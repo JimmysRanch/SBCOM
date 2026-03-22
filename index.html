@@ -12,18 +12,20 @@
         --midnight: #313131;
         --button-bg: rgba(255, 255, 255, 0.92);
         --button-text: #5f2d67;
+        --button-cta: #f7c45b;
+        --scroll-duration: 28s;
       }
 
       * {
         box-sizing: border-box;
       }
 
-      @keyframes left-scrolling-images {
+      @keyframes scroll-gallery {
         0% {
           transform: translate3d(0, 0, 0);
         }
         100% {
-          transform: translate3d(-900%, 0, 0);
+          transform: translate3d(-50%, 0, 0);
         }
       }
 
@@ -65,7 +67,7 @@
       }
 
       .brand img {
-        width: min(300px, 28vw);
+        width: clamp(180px, 28vw, 300px);
         min-width: 150px;
         height: auto;
         object-fit: contain;
@@ -79,22 +81,24 @@
         gap: 14px;
       }
 
-      .nav a {
+      .nav button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         padding: 14px 24px;
+        border: 0;
         border-radius: 999px;
         background: var(--button-bg);
         color: var(--button-text);
-        text-decoration: none;
+        font: inherit;
         font-size: 1rem;
         letter-spacing: 0.02em;
+        cursor: pointer;
         box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
       }
 
-      .nav a:last-child {
-        background: #f7c45b;
+      .nav button:last-child {
+        background: var(--button-cta);
         color: var(--midnight);
       }
 
@@ -139,11 +143,12 @@
         z-index: 1;
         display: inline-flex;
         width: max-content;
+        animation: var(--scroll-duration) linear infinite scroll-gallery;
+        will-change: transform;
       }
 
       .scrolling-image {
         display: inline-block;
-        animation: 20s linear infinite left-scrolling-images;
       }
 
       .scrolling-slider-img {
@@ -232,9 +237,9 @@
           <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" alt="Scruffy Butts logo" />
         </a>
         <nav class="nav" aria-label="Primary">
-          <a href="#about">About Us</a>
-          <a href="#contact">Contact</a>
-          <a href="#book">Book Appointment</a>
+          <button type="button">About Us</button>
+          <button type="button">Contact</button>
+          <button type="button">Book Appointment</button>
         </nav>
       </header>
 
@@ -249,60 +254,60 @@
           <div class="container-fluid">
             <div class="scroll-section">
               <div class="multicolor-wave-top"></div>
-              <div class="scrolling-images-wrap" aria-label="Scrolling gallery">
+              <div class="scrolling-images-wrap" aria-hidden="true">
                 <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 1" />
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 2" />
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 3" />
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 4" />
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 5" />
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 6" />
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 7" />
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 8" />
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 9" />
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 1 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 2 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 3 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 4 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 5 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 6 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 7 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="Dog grooming gallery image 8 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
                 </div>
-                <div class="scrolling-image">
-                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="Dog grooming gallery image 9 duplicate" />
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
                 </div>
               </div>
               <div class="multicolor-wave-bottom"></div>
