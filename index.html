@@ -105,6 +105,7 @@
       }
 
       .hero {
+        position: relative;
         min-height: 100vh;
         padding: 0;
         display: flex;
@@ -115,6 +116,38 @@
       .hero-frame {
         width: 100%;
         overflow: hidden;
+      }
+
+      .hero-content {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 140px 32px 48px;
+        background: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.12) 55%, rgba(0, 0, 0, 0) 100%);
+      }
+
+      .hero-title,
+      .hero-subtitle {
+        margin: 0;
+        max-width: min(700px, 100%);
+        text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero-title {
+        font-size: clamp(2.75rem, 7vw, 5.5rem);
+        line-height: 0.98;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 2.4vw, 1.75rem);
+        line-height: 1.3;
       }
 
       .hero-frame img {
@@ -224,6 +257,11 @@
           min-height: 100vh;
         }
 
+        .hero-content {
+          gap: 12px;
+          padding: 132px 20px 40px;
+        }
+
         .scroll-section {
           padding: 44px 0;
         }
@@ -252,6 +290,10 @@
         <section class="hero" aria-label="Hero image">
           <div class="hero-frame">
             <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" alt="Scruffy Butts hero image" />
+          </div>
+          <div class="hero-content">
+            <h1 class="hero-title">Refined Grooming. Real Results.</h1>
+            <p class="hero-subtitle">The Standard Your Dog&rsquo;s Been Missing</p>
           </div>
         </section>
 
