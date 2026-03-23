@@ -6,790 +6,326 @@
     <title>Scruffy Butts</title>
     <style>
       :root {
-        --blue: #4e86c8;
-        --blue-deep: #376da9;
-        --pink: #f25f86;
-        --pink-deep: #dc476f;
-        --orange: #f68b38;
-        --teal: #49d2bf;
-        --text: #28436f;
-        --cream: #fff7ee;
+        --vanilla: #fff;
+        --pink: #e1accf;
+        --purple: #8f4899;
+        --midnight: #313131;
+        --button-bg: rgba(255, 255, 255, 0.92);
+        --button-text: #5f2d67;
+        --button-cta: #f7c45b;
+        --scroll-duration: 28s;
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
+
+      @keyframes scroll-gallery {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+        100% {
+          transform: translate3d(-50%, 0, 0);
+        }
+      }
+
       body {
         margin: 0;
         font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-        background:
-          radial-gradient(circle at top, #dfe8f7, #eef3fb 24%, #f9efe6 60%, #eedfd5 100%);
-        color: var(--text);
+        font-weight: 400;
+        font-size: 16px;
+        font-style: normal;
+        background: linear-gradient(180deg, #9d58aa 0%, #8f4899 55%, #73397d 100%);
+        color: var(--vanilla);
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
       }
 
       .page {
         min-height: 100vh;
-        overflow: hidden;
       }
 
       .topbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 28px 56px 20px;
-        position: relative;
-        z-index: 2;
+        justify-content: flex-end;
+        padding: 24px 32px 0;
+        z-index: 3;
       }
 
       .brand {
-        display: flex;
-        align-items: center;
-        gap: 18px;
+        position: absolute;
+        top: clamp(46px, 5vw, 84px);
+        left: clamp(24px, 3vw, 48px);
+        display: inline-flex;
+        align-items: flex-start;
+        z-index: 4;
       }
 
-      .dog-badge {
-        width: 150px;
-        height: 150px;
-        border-radius: 40px;
-        position: relative;
-        background: radial-gradient(circle at 40% 35%, #fff7e6 0 22%, #e6c49c 23%, #8d5e3d 70%, #5b3527 100%);
-        box-shadow: 0 10px 18px rgba(68, 64, 99, 0.24);
-      }
-      .dog-badge::before,
-      .dog-badge::after {
-        content: "";
-        position: absolute;
-        top: 18px;
-        width: 48px;
-        height: 68px;
-        background: linear-gradient(180deg, #a4744c, #6f442d);
-        border-radius: 26px 26px 14px 14px;
-      }
-      .dog-badge::before { left: 14px; transform: rotate(-24deg); }
-      .dog-badge::after { right: 14px; transform: rotate(24deg); }
-      .face {
-        position: absolute;
-        inset: 20px;
-        background: radial-gradient(circle at 50% 36%, #fffdf9 0 30%, #ecd5b2 31% 52%, #c69566 53% 78%, #8b5f3f 100%);
-        border-radius: 46% 46% 42% 42%;
-      }
-      .face .eye,
-      .face .eye::after {
-        content: "";
-        position: absolute;
-        width: 15px;
-        height: 20px;
-        background: #2b211d;
-        border-radius: 50%;
-        top: 44px;
-      }
-      .face .eye { left: 34px; }
-      .face .eye::after { left: 52px; }
-      .face .snout {
-        position: absolute;
-        left: 50%;
-        top: 58px;
-        width: 54px;
-        height: 42px;
-        transform: translateX(-50%);
-        background: #fbf4eb;
-        border-radius: 50%;
-      }
-      .face .snout::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 8px;
-        width: 17px;
-        height: 12px;
-        transform: translateX(-50%);
-        background: #34211b;
-        border-radius: 50% 50% 65% 65%;
-      }
-      .face .snout::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 22px;
-        width: 20px;
-        height: 18px;
-        transform: translateX(-50%);
-        border-bottom: 4px solid #34211b;
-        border-radius: 0 0 20px 20px;
-      }
-      .bandana {
-        position: absolute;
-        left: 50%;
-        bottom: -8px;
-        width: 82px;
-        height: 64px;
-        transform: translateX(-50%);
-        background: linear-gradient(180deg, #ff5d99, #b91d63);
-        clip-path: polygon(0 0, 100% 0, 50% 100%);
-        filter: drop-shadow(0 6px 6px rgba(80, 24, 64, 0.24));
-      }
-
-      .logo-text {
-        line-height: 0.86;
-        font-weight: 900;
-        letter-spacing: -1px;
-        text-shadow:
-          0 3px 0 rgba(87, 50, 24, 0.9),
-          0 0 18px rgba(255,255,255,0.3);
-      }
-      .logo-text .scruffy {
-        display: block;
-        font-size: 5rem;
-        color: #ff9f53;
-      }
-      .logo-text .butts {
-        display: block;
-        font-size: 4.45rem;
-        color: #57d8c0;
-        margin-left: 56px;
+      .brand img {
+        width: clamp(180px, 28vw, 300px);
+        min-width: 150px;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.2));
       }
 
       .nav {
         display: flex;
-        gap: 20px;
-        align-items: center;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 14px;
       }
-      .nav a,
-      .cta,
-      .hero-actions a,
-      .feature-card {
-        text-decoration: none;
-      }
-      .pill {
+
+      .nav button {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 205px;
-        padding: 22px 32px;
-        color: white;
-        font-size: 1.15rem;
-        font-weight: 800;
-        border-radius: 24px;
-        background: linear-gradient(180deg, #6fa4d9, #4778b6 55%, #3b6da9);
-        box-shadow:
-          inset 0 3px 7px rgba(255,255,255,0.4),
-          inset 0 -3px 4px rgba(25,52,96,0.28),
-          0 8px 14px rgba(76, 108, 152, 0.28);
+        padding: 14px 24px;
+        border: 0;
+        border-radius: 999px;
+        background: var(--button-bg);
+        color: var(--button-text);
+        font: inherit;
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
       }
-      .pill.pink {
-        background: linear-gradient(180deg, #ff7b9c, #ea547e 55%, #d74872);
-        box-shadow:
-          inset 0 3px 7px rgba(255,255,255,0.45),
-          inset 0 -3px 4px rgba(124,31,63,0.25),
-          0 8px 14px rgba(170, 84, 116, 0.3);
+
+      .nav button:last-child {
+        background: var(--button-cta);
+        color: var(--midnight);
       }
 
       .hero {
-        position: relative;
-        margin-top: -10px;
-        padding: 40px 40px 30px;
-      }
-      .hero-shell {
-        position: relative;
-        min-height: 860px;
-        border-radius: 0 0 32px 32px;
-        overflow: hidden;
-        background:
-          radial-gradient(circle at 15% 45%, rgba(255, 247, 227, 0.95), rgba(255,255,255,0.4) 22%, transparent 35%),
-          radial-gradient(circle at 75% 22%, rgba(255,241,207,0.7), transparent 16%),
-          radial-gradient(circle at 68% 62%, rgba(255,255,255,0.6), transparent 18%),
-          linear-gradient(180deg, rgba(255,255,255,0.95) 0 14%, rgba(255,255,255,0.2) 20%),
-          linear-gradient(90deg, #e6c7aa 0%, #f9efe6 16%, #fffdf9 34%, #f7e7d8 52%, #f1dfcf 68%, #e5d4c8 100%);
-        box-shadow: inset 0 20px 40px rgba(255,255,255,0.65);
-      }
-      .hero-shell::before {
-        content: "";
-        position: absolute;
-        inset: -40px 0 auto;
-        height: 120px;
-        background: white;
-        border-bottom-left-radius: 60% 100%;
-        border-bottom-right-radius: 40% 100%;
-        opacity: 0.88;
-      }
-      .glow {
-        position: absolute;
-        inset: 0;
-        background:
-          radial-gradient(circle at 50% 40%, rgba(255,255,255,0.88), rgba(255,255,255,0.7) 18%, rgba(255,255,255,0.18) 38%, transparent 58%);
-        pointer-events: none;
-      }
-      .sparkles,
-      .sparkles::before,
-      .sparkles::after {
-        position: absolute;
-        content: "";
-        width: 160px;
-        height: 160px;
-        border-radius: 50%;
-        filter: blur(1px);
-        background: radial-gradient(circle, rgba(255,255,255,0.9) 1px, transparent 3px);
-        background-size: 18px 18px;
-        opacity: 0.9;
-      }
-      .sparkles { left: 120px; top: 120px; }
-      .sparkles::before { left: 1020px; top: 30px; }
-      .sparkles::after { left: 1180px; top: 540px; }
-
-      .hero-copy {
-        position: absolute;
-        left: 50%;
-        top: 240px;
-        width: 760px;
-        transform: translateX(-50%);
-        text-align: center;
-        z-index: 2;
-      }
-      .hero-copy h1 {
-        margin: 0;
-        font-size: 5.2rem;
-        line-height: 1.05;
-        color: #304d78;
-        font-weight: 900;
-      }
-      .hero-copy h1 span {
-        display: block;
-        color: #d74d16;
-      }
-      .hero-copy h2 {
-        margin: 22px 0 10px;
-        font-size: 2.5rem;
-        color: #2a4673;
-      }
-      .hero-copy p {
-        margin: 10px auto 0;
-        max-width: 690px;
-        font-size: 1.45rem;
-        line-height: 1.5;
-        color: #4d648c;
-      }
-      .hero-actions {
+        min-height: auto;
+        padding: 110px 24px 48px;
         display: flex;
+        align-items: flex-start;
         justify-content: center;
-        gap: 22px;
-        margin-top: 34px;
-      }
-      .hero-actions a {
-        min-width: 260px;
-        padding: 22px 24px;
-        border-radius: 22px;
-        color: white;
-        font-weight: 800;
-        font-size: 1.15rem;
-      }
-      .hero-actions .primary {
-        background: linear-gradient(180deg, #ff7f9d, #ea597f 60%, #d64870);
-        box-shadow: inset 0 3px 7px rgba(255,255,255,0.45), 0 10px 18px rgba(196,84,123,0.28);
-      }
-      .hero-actions .secondary {
-        background: linear-gradient(180deg, #71a7db, #4b80bc 60%, #3d6faa);
-        box-shadow: inset 0 3px 7px rgba(255,255,255,0.45), 0 10px 18px rgba(84,116,196,0.24);
       }
 
-      .scene-left,
-      .scene-right,
-      .back-dog {
-        position: absolute;
+      .hero-frame {
+        width: min(1280px, 100%);
+        border-radius: 32px;
+        overflow: hidden;
+        box-shadow: 0 30px 60px rgba(24, 9, 27, 0.35);
+      }
+
+      .hero-frame img {
+        width: 100%;
+        height: auto;
+      }
+
+      .gallery-section {
+        margin-top: 24px;
+        padding: 0 0 72px;
+      }
+
+      .container-fluid {
+        padding: 0;
+      }
+
+      .scroll-section {
+        position: relative;
+        overflow: hidden;
+        padding: 64px 0;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+      }
+
+      .scrolling-images-wrap {
+        position: relative;
         z-index: 1;
+        display: inline-flex;
+        width: max-content;
+        animation: var(--scroll-duration) linear infinite scroll-gallery;
+        will-change: transform;
       }
-      .scene-left {
-        left: 10px;
-        bottom: 180px;
-        width: 450px;
-        height: 470px;
+
+      .scrolling-image {
+        display: inline-block;
       }
-      .tub {
+
+      .scrolling-slider-img {
+        width: 400px;
+        height: 450px;
+        object-fit: cover;
+        border-radius: 24px;
+        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.22);
+      }
+
+      .scrolling-slider-img.logo-slide {
+        object-fit: contain;
+        padding: 26px;
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .multicolor-wave-top,
+      .multicolor-wave-bottom {
+        pointer-events: none;
         position: absolute;
         left: 0;
-        bottom: 0;
-        width: 360px;
-        height: 250px;
-        border-radius: 70px 70px 40px 40px;
-        background: linear-gradient(180deg, #fffef9, #f2dfce 70%, #e7c79d 100%);
-        box-shadow: inset 0 18px 28px rgba(255,255,255,0.85), 0 16px 30px rgba(167,125,88,0.18);
-      }
-      .tub::before {
-        content: "";
-        position: absolute;
-        left: 18px;
-        top: -30px;
-        width: 324px;
-        height: 94px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, #fffef9, #f2dfce);
-        box-shadow: inset 0 10px 18px rgba(255,255,255,0.8);
-      }
-      .bubble {
-        position: absolute;
-        background: rgba(255,255,255,0.78);
-        border-radius: 50%;
-        box-shadow: inset 0 3px 10px rgba(255,255,255,0.9);
-      }
-      .bubble.one { width: 24px; height: 24px; left: 44px; top: 124px; }
-      .bubble.two { width: 34px; height: 34px; left: 272px; top: 150px; }
-      .bubble.three { width: 18px; height: 18px; left: 140px; top: 196px; }
-      .bath-dog {
-        position: absolute;
-        left: 92px;
-        top: 64px;
-        width: 132px;
-        height: 148px;
-        border-radius: 50px;
-        background: radial-gradient(circle at 45% 35%, #d9a168 0 30%, #b67844 50%, #8c522d 100%);
-        box-shadow: 0 10px 18px rgba(110,68,28,0.18);
-      }
-      .bath-dog::before,
-      .bath-dog::after {
-        content: "";
-        position: absolute;
-        top: 18px;
-        width: 36px;
-        height: 48px;
-        background: #a76636;
-        border-radius: 30px;
-      }
-      .bath-dog::before { left: 4px; transform: rotate(-18deg); }
-      .bath-dog::after { right: 4px; transform: rotate(18deg); }
-      .bath-dog .face-mini {
-        position: absolute;
-        left: 20px;
-        top: 20px;
-        width: 92px;
-        height: 100px;
-        border-radius: 44px;
-        background: radial-gradient(circle at 50% 30%, #efbe82 0 35%, #bb7c48 60%, #8d552d 100%);
-      }
-      .duck {
-        position: absolute;
-        left: 214px;
-        top: 120px;
-        width: 56px;
-        height: 42px;
-        border-radius: 50% 50% 42% 42%;
-        background: #ffd44d;
-      }
-      .duck::before {
-        content: "";
-        position: absolute;
-        right: -10px;
-        top: 12px;
-        width: 14px;
-        height: 10px;
-        background: #ff9c35;
-        clip-path: polygon(0 50%, 100% 0, 100% 100%);
-      }
-
-      .scene-right {
-        right: 34px;
-        bottom: 170px;
-        width: 640px;
-        height: 500px;
-      }
-      .desk {
-        position: absolute;
-        right: 46px;
-        bottom: 0;
-        width: 500px;
-        height: 220px;
-        border-radius: 150px 150px 40px 40px;
-        background: linear-gradient(180deg, #fffef9, #ead8ca 75%, #e4bf84 100%);
-        box-shadow: inset 0 18px 28px rgba(255,255,255,0.9), 0 20px 28px rgba(176,136,92,0.16);
-      }
-      .desk::before {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: -28px;
-        width: 472px;
-        height: 92px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, #fffef9, #eee0d3);
-      }
-      .paw {
-        position: absolute;
-        left: 180px;
-        bottom: 46px;
-        width: 88px;
-        height: 82px;
-        background: #f0bd60;
-        border-radius: 46px 46px 30px 30px;
-        opacity: 0.95;
-      }
-      .paw::before,
-      .paw::after {
-        content: "";
-        position: absolute;
-        width: 24px;
-        height: 28px;
-        border-radius: 50%;
-        background: inherit;
-        top: -24px;
-      }
-      .paw::before { left: 10px; box-shadow: 34px 2px 0 #f0bd60, 68px 12px 0 #f0bd60; }
-      .paw::after { left: 42px; }
-      .front-dog {
-        position: absolute;
-        right: 118px;
-        bottom: 150px;
-        width: 250px;
-        height: 270px;
-        border-radius: 94px;
-        background: radial-gradient(circle at 50% 25%, #fffef9 0 26%, #efd1a8 35%, #c28a5f 58%, #8e5d3c 100%);
-        box-shadow: 0 24px 35px rgba(112,83,61,0.18);
-      }
-      .front-dog::before,
-      .front-dog::after {
-        content: "";
-        position: absolute;
-        top: 26px;
-        width: 68px;
-        height: 94px;
-        background: linear-gradient(180deg, #c68b60, #8f5d39);
-        border-radius: 50px;
-      }
-      .front-dog::before { left: 12px; transform: rotate(-22deg); }
-      .front-dog::after { right: 12px; transform: rotate(22deg); }
-      .front-dog .blanket {
-        position: absolute;
-        left: -8px;
-        right: -8px;
-        bottom: 0;
-        height: 140px;
-        border-radius: 84px 84px 50px 50px;
-        background: linear-gradient(180deg, #cce1fa, #aac8ea 55%, #7ca7dd);
-      }
-      .front-dog .snout-big {
-        position: absolute;
-        left: 50%;
-        top: 104px;
-        width: 104px;
-        height: 76px;
-        transform: translateX(-50%);
-        background: #fdfaf4;
-        border-radius: 50px;
+        width: 100%;
+        height: 100%;
+        background-repeat: repeat-x;
         z-index: 2;
       }
-      .front-dog .snout-big::before {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 16px;
-        width: 30px;
-        height: 22px;
-        transform: translateX(-50%);
-        background: #32211d;
-        border-radius: 50%;
-      }
-      .front-dog .snout-big::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        top: 38px;
-        width: 32px;
-        height: 26px;
-        transform: translateX(-50%);
-        border-bottom: 5px solid #32211d;
-        border-radius: 0 0 24px 24px;
-      }
-      .eyes-big,
-      .eyes-big::after {
-        content: "";
-        position: absolute;
-        width: 22px;
-        height: 28px;
-        background: #32211d;
-        border-radius: 50%;
-        top: 96px;
-        left: 74px;
-        z-index: 2;
-      }
-      .eyes-big::after { left: 84px; }
-      .paw-front,
-      .paw-front::after {
-        content: "";
-        position: absolute;
-        width: 64px;
-        height: 34px;
-        background: #fff8ef;
-        bottom: 6px;
-        left: 52px;
-        border-radius: 26px;
-        z-index: 3;
-      }
-      .paw-front::after { left: 84px; }
-      .back-dog {
-        left: 1040px;
-        bottom: 370px;
-        width: 130px;
-        height: 190px;
-        border-radius: 60px;
-        background: radial-gradient(circle at 50% 26%, #fffef8 0 26%, #d89e65 35%, #a56b42 60%, #8c5830 100%);
-        box-shadow: 0 16px 22px rgba(117,81,44,0.16);
-      }
-      .back-dog::before,
-      .back-dog::after {
-        content: "";
-        position: absolute;
-        top: 20px;
-        width: 34px;
-        height: 50px;
-        background: #ad7245;
-        border-radius: 30px;
-      }
-      .back-dog::before { left: 6px; transform: rotate(-18deg); }
-      .back-dog::after { right: 6px; transform: rotate(18deg); }
-      .back-dog .snout-back {
-        position: absolute;
-        left: 50%;
-        top: 72px;
-        width: 54px;
-        height: 42px;
-        transform: translateX(-50%);
-        background: #fff8f0;
-        border-radius: 26px;
+
+      .multicolor-wave-top {
+        top: -40px;
+        background-image:
+          radial-gradient(circle at 40px 40px, #f7c45b 0 32px, transparent 33px),
+          radial-gradient(circle at 140px 40px, #f78db1 0 32px, transparent 33px),
+          radial-gradient(circle at 240px 40px, #66d7c1 0 32px, transparent 33px),
+          radial-gradient(circle at 340px 40px, #fff 0 32px, transparent 33px);
+        background-size: 400px 80px;
+        background-position: top left;
       }
 
-      .features {
-        position: absolute;
-        left: 50%;
-        bottom: 26px;
-        transform: translateX(-50%);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        width: min(1440px, calc(100% - 120px));
-        z-index: 3;
-      }
-      .feature-card {
-        position: relative;
-        min-height: 238px;
-        border-radius: 44px;
-        padding: 26px 26px 24px;
-        color: white;
-        box-shadow: inset 0 10px 20px rgba(255,255,255,0.5), 0 15px 24px rgba(79,89,113,0.16);
-        overflow: hidden;
-      }
-      .feature-card::before {
-        content: "";
-        position: absolute;
-        inset: 12px;
-        border-radius: 34px;
-        border: 4px solid rgba(255,255,255,0.25);
-      }
-      .feature-card.pink-card {
-        background: linear-gradient(180deg, #ffd4c9, #eaa8ac 38%, #d48393 100%);
-      }
-      .feature-card.blue-card {
-        background: linear-gradient(180deg, #d4e7ff, #92c7f4 38%, #528fda 100%);
-      }
-      .feature-card.gold-card {
-        background: linear-gradient(180deg, #ffe8bf, #f7cf98 40%, #e0a967 100%);
-      }
-      .feature-art {
-        height: 132px;
-        position: relative;
-      }
-      .scissors,
-      .brush,
-      .rubber-duck,
-      .gift,
-      .candle,
-      .flowers {
-        position: absolute;
-      }
-      .scissors {
-        left: 74px; top: 18px; width: 88px; height: 88px;
-      }
-      .scissors::before,
-      .scissors::after {
-        content: "";
-        position: absolute;
-        border: 6px solid rgba(255,255,255,0.95);
-        border-radius: 50%;
-        width: 34px; height: 34px; bottom: 0;
-      }
-      .scissors::before { left: 0; }
-      .scissors::after { right: 0; }
-      .scissors span,
-      .scissors span::after {
-        position: absolute;
-        content: "";
-        left: 42px; top: 16px;
-        width: 8px; height: 80px;
-        background: rgba(255,255,255,0.95);
-        border-radius: 10px;
-        transform: rotate(34deg);
-      }
-      .scissors span::after { transform: rotate(-70deg); top: 0; left: 0; }
-      .brush {
-        right: 48px; top: 18px; width: 110px; height: 54px; background: linear-gradient(180deg, #87bbef, #5f8fd9); border-radius: 18px; transform: rotate(25deg);
-        box-shadow: inset 0 4px 8px rgba(255,255,255,0.45);
-      }
-      .brush::before {
-        content: "";
-        position: absolute;
-        inset: 8px 10px;
-        background: repeating-linear-gradient(90deg, #ffcb5e, #ffcb5e 4px, #ffffff 4px, #ffffff 8px);
-        border-radius: 10px;
-      }
-      .flowers { left: 22px; bottom: 24px; width: 38px; height: 38px; background: radial-gradient(circle, #fff 28%, transparent 30%), radial-gradient(circle at 50% 0, #f6f2f7 42%, transparent 44%), radial-gradient(circle at 0 50%, #f6f2f7 42%, transparent 44%), radial-gradient(circle at 100% 50%, #f6f2f7 42%, transparent 44%), radial-gradient(circle at 50% 100%, #f6f2f7 42%, transparent 44%); }
-      .rubber-duck {
-        left: 96px; top: 28px; width: 74px; height: 56px; border-radius: 50%; background: #ffd553;
-      }
-      .rubber-duck::before { content: ""; position: absolute; right: -12px; top: 18px; width: 16px; height: 12px; background: #ff9e32; clip-path: polygon(0 50%, 100% 0, 100% 100%); }
-      .candle { right: 48px; bottom: 18px; width: 26px; height: 44px; background: #fff6ec; border-radius: 10px; box-shadow: 42px -8px 0 8px #d6b296, 86px -4px 0 0 #b78262; }
-      .candle::before { content: ""; position: absolute; left: 8px; top: -14px; width: 10px; height: 16px; background: radial-gradient(circle at 50% 100%, #ffcf61, #ffa648 65%, transparent 67%); box-shadow: 44px -8px 0 0 rgba(255,166,72,0.95), 86px -4px 0 0 rgba(255,166,72,0.95); }
-      .gift {
-        left: 112px; top: 26px; width: 88px; height: 72px; background: #7fc6ec; border-radius: 10px;
-        box-shadow: 106px 8px 0 0 #f3f5fb;
-      }
-      .gift::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, transparent 44%, #e5a24f 44% 56%, transparent 56%), linear-gradient(transparent 42%, #e5a24f 42% 58%, transparent 58%);
-        border-radius: inherit;
-      }
-      .gift::after {
-        content: "";
-        position: absolute;
-        left: 24px; top: -12px; width: 40px; height: 24px;
-        border: 8px solid #f0a74f;
-        border-bottom: 0;
-        border-radius: 22px 22px 0 0;
-      }
-      .feature-card h3 {
-        position: absolute;
-        left: 0; right: 0; bottom: 24px;
-        margin: 0;
-        text-align: center;
-        font-size: 1.2rem;
-        font-weight: 800;
-      }
-
-      @media (max-width: 1400px) {
-        .logo-text .scruffy { font-size: 4.2rem; }
-        .logo-text .butts { font-size: 3.7rem; }
-        .topbar { padding-inline: 24px; }
-        .features { width: calc(100% - 40px); }
-      }
-
-      @media (max-width: 1200px) {
-        .topbar { flex-direction: column; gap: 24px; }
-        .nav { flex-wrap: wrap; justify-content: center; }
-        .hero-copy { width: calc(100% - 80px); top: 220px; }
-        .hero-copy h1 { font-size: 4rem; }
-        .hero-shell { min-height: 1120px; }
-        .scene-right { transform: scale(0.85); transform-origin: bottom right; }
-        .scene-left { transform: scale(0.85); transform-origin: bottom left; }
-        .features { grid-template-columns: 1fr; bottom: 20px; }
+      .multicolor-wave-bottom {
+        bottom: -40px;
+        background-image:
+          radial-gradient(circle at 40px 40px, #66d7c1 0 32px, transparent 33px),
+          radial-gradient(circle at 140px 40px, #fff 0 32px, transparent 33px),
+          radial-gradient(circle at 240px 40px, #f7c45b 0 32px, transparent 33px),
+          radial-gradient(circle at 340px 40px, #f78db1 0 32px, transparent 33px);
+        background-size: 400px 80px;
+        background-position: bottom left;
       }
 
       @media (max-width: 900px) {
-        .dog-badge { width: 110px; height: 110px; }
-        .logo-text .scruffy { font-size: 3rem; }
-        .logo-text .butts { font-size: 2.6rem; margin-left: 28px; }
-        .pill { min-width: 160px; padding: 16px 22px; }
-        .hero-copy { top: 170px; }
-        .hero-copy h1 { font-size: 3rem; }
-        .hero-copy h2 { font-size: 1.9rem; }
-        .hero-copy p { font-size: 1.1rem; }
-        .hero-actions { flex-direction: column; align-items: center; }
-        .scene-left, .scene-right, .back-dog { display: none; }
-        .hero-shell { min-height: 980px; }
+        .topbar {
+          padding: 16px 16px 0;
+        }
+
+        .brand {
+          top: clamp(104px, 24vw, 148px);
+          left: 16px;
+        }
+
+        .brand img {
+          width: min(210px, 52vw);
+        }
+
+        .nav {
+          max-width: calc(100% - 32px);
+          gap: 10px;
+        }
+
+        .nav button {
+          padding: 12px 18px;
+          font-size: 0.95rem;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 140px 12px 40px;
+        }
+
+        .hero-frame {
+          border-radius: 24px;
+        }
+
+        .scroll-section {
+          padding: 44px 0;
+        }
+
+        .scrolling-slider-img {
+          width: 260px;
+          height: 300px;
+        }
       }
     </style>
   </head>
   <body>
     <div class="page">
       <header class="topbar">
-        <div class="brand" aria-label="Scruffy Butts logo">
-          <div class="dog-badge" aria-hidden="true">
-            <div class="face">
-              <div class="eye"></div>
-              <div class="snout"></div>
-            </div>
-            <div class="bandana"></div>
-          </div>
-          <div class="logo-text">
-            <span class="scruffy">Scruffy</span>
-            <span class="butts">Butts</span>
-          </div>
-        </div>
+        <a class="brand" href="#" aria-label="Scruffy Butts home">
+          <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" alt="Scruffy Butts logo" />
+        </a>
         <nav class="nav" aria-label="Primary">
-          <a class="pill" href="#services">Services</a>
-          <a class="pill" href="#packages">Spa Packages</a>
-          <a class="pill" href="#gallery">Gallery</a>
-          <a class="pill pink" href="#book">Book Now</a>
+          <button type="button">About Us</button>
+          <button type="button">Contact</button>
+          <button type="button">Book Appointment</button>
         </nav>
       </header>
 
-      <main class="hero">
-        <section class="hero-shell">
-          <div class="sparkles"></div>
-          <div class="glow"></div>
-
-          <div class="hero-copy">
-            <h1>Welcome to <span>Scruffy Butts</span></h1>
-            <h2>Luxury Dog Grooming Experience</h2>
-            <p>
-              Pamper your pup with our premier grooming services in a spa-like environment.
-            </p>
-            <div class="hero-actions">
-              <a class="primary" href="#book">Book an Appointment</a>
-              <a class="secondary" href="#services">View Our Services</a>
-            </div>
+      <main>
+        <section class="hero" aria-label="Hero image">
+          <div class="hero-frame">
+            <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" alt="Scruffy Butts hero image" />
           </div>
+        </section>
 
-          <div class="scene-left" aria-hidden="true">
-            <div class="tub">
-              <div class="bubble one"></div>
-              <div class="bubble two"></div>
-              <div class="bubble three"></div>
+        <section class="gallery-section">
+          <div class="container-fluid">
+            <div class="scroll-section">
+              <div class="multicolor-wave-top"></div>
+              <div class="scrolling-images-wrap" aria-hidden="true">
+                <div class="scrolling-image">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" class="scrolling-slider-img logo-slide" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" class="scrolling-slider-img" alt="" />
+                </div>
+              </div>
+              <div class="multicolor-wave-bottom"></div>
             </div>
-            <div class="bath-dog"><div class="face-mini"></div></div>
-            <div class="duck"></div>
-          </div>
-
-          <div class="back-dog" aria-hidden="true"><div class="snout-back"></div></div>
-
-          <div class="scene-right" aria-hidden="true">
-            <div class="front-dog">
-              <div class="eyes-big"></div>
-              <div class="snout-big"></div>
-              <div class="blanket"></div>
-              <div class="paw-front"></div>
-            </div>
-            <div class="desk"><div class="paw"></div></div>
-          </div>
-
-          <div class="features">
-            <a class="feature-card pink-card" href="#services">
-              <div class="feature-art">
-                <div class="flowers"></div>
-                <div class="scissors"><span></span></div>
-                <div class="brush"></div>
-              </div>
-              <h3>Grooming Services</h3>
-            </a>
-            <a class="feature-card blue-card" href="#packages">
-              <div class="feature-art">
-                <div class="rubber-duck"></div>
-                <div class="candle"></div>
-              </div>
-              <h3>Spa Packages</h3>
-            </a>
-            <a class="feature-card gold-card" href="#offers">
-              <div class="feature-art">
-                <div class="rubber-duck" style="left:48px; top:68px; transform:scale(.65);"></div>
-                <div class="gift"></div>
-                <div class="candle" style="right:34px; bottom:24px;"></div>
-              </div>
-              <h3>Special Offers</h3>
-            </a>
           </div>
         </section>
       </main>
