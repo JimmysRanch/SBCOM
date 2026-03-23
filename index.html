@@ -125,7 +125,10 @@
       }
 
       .gallery-section {
-        margin-top: 0;
+        --gallery-overlap: 88px;
+        position: relative;
+        z-index: 2;
+        margin-top: calc(-1 * var(--gallery-overlap));
         padding: 0 0 72px;
       }
 
@@ -134,6 +137,7 @@
       }
 
       .scroll-section {
+        --carousel-overlay-height: 54px;
         position: relative;
         overflow: hidden;
         padding: 64px 0;
@@ -173,30 +177,21 @@
         position: absolute;
         left: 0;
         width: 100%;
-        height: 100%;
+        height: var(--carousel-overlay-height);
         background-repeat: repeat-x;
+        background-size: auto var(--carousel-overlay-height);
         z-index: 2;
       }
 
       .multicolor-wave-top {
-        top: -40px;
-        background-image:
-          radial-gradient(circle at 40px 40px, #f7c45b 0 32px, transparent 33px),
-          radial-gradient(circle at 140px 40px, #f78db1 0 32px, transparent 33px),
-          radial-gradient(circle at 240px 40px, #66d7c1 0 32px, transparent 33px),
-          radial-gradient(circle at 340px 40px, #fff 0 32px, transparent 33px);
-        background-size: 400px 80px;
+        top: 40px;
+        background-image: url("./IMG_5774.png");
         background-position: top left;
       }
 
       .multicolor-wave-bottom {
-        bottom: -40px;
-        background-image:
-          radial-gradient(circle at 40px 40px, #66d7c1 0 32px, transparent 33px),
-          radial-gradient(circle at 140px 40px, #fff 0 32px, transparent 33px),
-          radial-gradient(circle at 240px 40px, #f7c45b 0 32px, transparent 33px),
-          radial-gradient(circle at 340px 40px, #f78db1 0 32px, transparent 33px);
-        background-size: 400px 80px;
+        bottom: 40px;
+        background-image: url("./IMG_5775.png");
         background-position: bottom left;
       }
 
@@ -222,6 +217,10 @@
 
         .hero {
           min-height: 100vh;
+        }
+
+        .gallery-section {
+          --gallery-overlap: 52px;
         }
 
         .scroll-section {
