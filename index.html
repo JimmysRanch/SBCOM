@@ -49,23 +49,19 @@
       }
 
       .topbar {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         display: flex;
-        justify-content: flex-end;
-        padding: 24px 32px 0;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 24px 32px;
         z-index: 3;
       }
 
       .brand {
-        position: absolute;
-        top: clamp(46px, 5vw, 84px);
-        left: clamp(24px, 3vw, 48px);
         display: inline-flex;
         align-items: flex-start;
-        z-index: 4;
+        flex-shrink: 0;
       }
 
       .brand img {
@@ -106,7 +102,7 @@
 
       .hero {
         min-height: auto;
-        padding: 110px 24px 48px;
+        padding: 24px 24px 48px;
         display: flex;
         align-items: flex-start;
         justify-content: center;
@@ -202,12 +198,8 @@
 
       @media (max-width: 900px) {
         .topbar {
-          padding: 16px 16px 0;
-        }
-
-        .brand {
-          top: clamp(104px, 24vw, 148px);
-          left: 16px;
+          gap: 16px;
+          padding: 16px;
         }
 
         .brand img {
@@ -226,7 +218,7 @@
 
         .hero {
           min-height: auto;
-          padding: 140px 12px 40px;
+          padding: 24px 12px 40px;
         }
 
         .hero-frame {
