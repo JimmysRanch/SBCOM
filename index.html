@@ -125,7 +125,10 @@
       }
 
       .gallery-section {
-        margin-top: 0;
+        --gallery-overlap: 88px;
+        position: relative;
+        z-index: 2;
+        margin-top: calc(-1 * var(--gallery-overlap));
         padding: 0 0 72px;
       }
 
@@ -214,6 +217,10 @@
 
         .hero {
           min-height: 100vh;
+        }
+
+        .gallery-section {
+          --gallery-overlap: 52px;
         }
 
         .scroll-section {
