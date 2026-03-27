@@ -196,21 +196,8 @@
       }
 
       @media (max-width: 1400px) {
-        main {
-          --gallery-docked-height: 280px;
-          position: relative;
-          min-height: calc(100vh + var(--gallery-docked-height));
-          min-height: calc(100dvh + var(--gallery-docked-height));
-        }
-
         .gallery-section {
           --gallery-overlap: 0px;
-          position: absolute;
-          top: calc(100vh - var(--gallery-docked-height));
-          top: calc(100dvh - var(--gallery-docked-height));
-          left: 0;
-          right: 0;
-          margin-top: 0;
           padding-bottom: 12px;
         }
 
@@ -235,10 +222,6 @@
       }
 
       @media (max-width: 900px) {
-        main {
-          --gallery-docked-height: 106px;
-        }
-
         .topbar {
           gap: 16px;
           padding: 16px;
