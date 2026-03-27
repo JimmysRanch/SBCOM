@@ -170,6 +170,7 @@
           0 0 0 1px rgba(255, 255, 255, 0.12);
         background: rgba(255, 255, 255, 0.08);
         user-select: none;
+        touch-action: none;
       }
 
       .image-wrapper {
@@ -577,8 +578,8 @@
           <div class="comparison-shell">
             <h2 class="comparison-heading" id="comparison-title">A closer look at the scruffy-to-stunning glow up</h2>
             <p class="comparison-copy">
-              Drag the slider to compare the look side by side. The new gallery images stay square, and this
-              comparison sits right at the bottom of the page.
+              Drag the slider to compare the grooming results side by side and see the Scruffy Butts glow up in
+              one smooth before-and-after view.
             </p>
             <div class="comparison-container" id="comparison">
               <div class="image-wrapper image-after">
@@ -592,14 +593,25 @@
               <span class="label label-after">After</span>
 
               <div class="slider-line" id="sliderLine"></div>
-              <button class="slider-knob" id="sliderKnob" type="button" aria-label="Image comparison slider">
+              <div
+                class="slider-knob"
+                id="sliderKnob"
+                tabindex="0"
+                role="slider"
+                aria-label="Image comparison slider"
+                aria-orientation="horizontal"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="50"
+                aria-valuetext="Slider at 50%, showing half before and half after"
+              >
                 <svg viewBox="0 0 24 24" aria-hidden="true">
                   <path
                     fill="currentColor"
                     d="M8.7 5.3a1 1 0 0 1 0 1.4L4.41 11H19a1 1 0 1 1 0 2H4.41l4.3 4.29a1 1 0 1 1-1.42 1.42l-6-6a1 1 0 0 1 0-1.42l6-6a1 1 0 0 1 1.41 0Zm6.6 0a1 1 0 0 1 1.41 0l6 6a1 1 0 0 1 0 1.42l-6 6a1 1 0 1 1-1.41-1.42L19.59 13H5a1 1 0 1 1 0-2h14.59l-4.29-4.3a1 1 0 0 1 0-1.4Z"
                   />
                 </svg>
-              </button>
+              </div>
             </div>
           </div>
         </section>
@@ -622,7 +634,13 @@
         beforeImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
         sliderLine.style.left = `${position}%`;
         sliderKnob.style.left = `${position}%`;
-        sliderKnob.setAttribute("aria-valuenow", String(Math.round(currentPosition)));
+        sliderKnob.setAttribute("aria-valuenow", Math.round(currentPosition));
+        sliderKnob.setAttribute(
+          "aria-valuetext",
+          `Slider at ${Math.round(currentPosition)}%, showing ${Math.round(currentPosition)}% before and ${Math.round(
+            100 - currentPosition,
+          )}% after`,
+        );
       }
 
       function handleMove(clientX) {
@@ -639,7 +657,7 @@
       });
 
       container.addEventListener("mousedown", (event) => {
-        if (event.target === sliderKnob) {
+        if (sliderKnob.contains(event.target)) {
           return;
         }
 
@@ -666,7 +684,6 @@
         (event) => {
           isDragging = true;
           container.classList.add("dragging");
-          event.preventDefault();
         },
         { passive: false },
       );
@@ -674,7 +691,11 @@
       container.addEventListener(
         "touchstart",
         (event) => {
-          if (event.target === sliderKnob) {
+          if (sliderKnob.contains(event.target)) {
+            return;
+          }
+
+          if (!event.touches || event.touches.length === 0) {
             return;
           }
 
@@ -692,6 +713,11 @@
             return;
           }
 
+          if (!event.touches || event.touches.length === 0) {
+            return;
+          }
+
+          event.preventDefault();
           handleMove(event.touches[0].clientX);
         },
         { passive: false },
@@ -701,11 +727,6 @@
         isDragging = false;
         container.classList.remove("dragging");
       });
-
-      sliderKnob.setAttribute("tabindex", "0");
-      sliderKnob.setAttribute("role", "slider");
-      sliderKnob.setAttribute("aria-valuemin", "0");
-      sliderKnob.setAttribute("aria-valuemax", "100");
 
       sliderKnob.addEventListener("keydown", (event) => {
         let newPosition = currentPosition;
