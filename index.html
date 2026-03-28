@@ -13,7 +13,6 @@
         --button-bg: rgba(255, 255, 255, 0.92);
         --button-text: #5f2d67;
         --button-cta: #f7c45b;
-        --hero-subtitle: #ffeaf6;
         --scroll-duration: 28s;
       }
 
@@ -27,40 +26,6 @@
         }
         100% {
           transform: translate3d(-50%, 0, 0);
-        }
-      }
-
-      @keyframes hero-title-float {
-        0%,
-        100% {
-          transform: translate3d(0, 0, 0) scale(1);
-          text-shadow:
-            0 3px 0 rgba(95, 45, 103, 0.95),
-            0 10px 20px rgba(49, 49, 49, 0.28),
-            0 18px 40px rgba(49, 49, 49, 0.24);
-        }
-        50% {
-          transform: translate3d(0, -6px, 0) scale(1.01);
-          text-shadow:
-            0 5px 0 rgba(95, 45, 103, 0.95),
-            0 14px 28px rgba(49, 49, 49, 0.34),
-            0 22px 44px rgba(49, 49, 49, 0.28);
-        }
-      }
-
-      @keyframes hero-subtitle-glow {
-        0%,
-        100% {
-          transform: translate3d(0, 0, 0);
-          text-shadow:
-            0 2px 0 rgba(95, 45, 103, 0.72),
-            0 8px 22px rgba(49, 49, 49, 0.25);
-        }
-        50% {
-          transform: translate3d(0, -3px, 0);
-          text-shadow:
-            0 3px 0 rgba(95, 45, 103, 0.8),
-            0 12px 26px rgba(49, 49, 49, 0.3);
         }
       }
 
@@ -172,16 +137,16 @@
       }
 
       .hero-title {
-        font-size: clamp(2.6rem, 6.6vw, 5.35rem);
+        font-family: "Arial Rounded MT Bold", "Trebuchet MS", "Segoe UI", sans-serif;
+        font-size: clamp(2.5rem, 6vw, 4.85rem);
         font-weight: 700;
-        line-height: 1.04;
-        letter-spacing: 0.01em;
-        color: var(--button-cta);
-        animation: hero-title-float 8s ease-in-out infinite;
+        line-height: 1.02;
+        letter-spacing: -0.01em;
+        color: var(--vanilla);
         text-shadow:
-          0 3px 0 rgba(95, 45, 103, 0.95),
-          0 10px 20px rgba(49, 49, 49, 0.28),
-          0 18px 40px rgba(49, 49, 49, 0.24);
+          0 2px 0 rgba(95, 45, 103, 0.85),
+          0 10px 24px rgba(49, 49, 49, 0.24),
+          0 18px 36px rgba(49, 49, 49, 0.18);
       }
 
       .hero-title-group {
@@ -189,24 +154,17 @@
       }
 
       .hero-subtitle {
-        font-size: clamp(1.2rem, 2.6vw, 1.75rem);
-        line-height: 1.32;
+        font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+        font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+        line-height: 1.3;
         max-width: 34ch;
-        font-weight: 600;
-        color: var(--hero-subtitle);
-        animation: hero-subtitle-glow 7s ease-in-out infinite;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--button-cta);
         text-shadow:
-          0 2px 0 rgba(95, 45, 103, 0.72),
-          0 8px 22px rgba(49, 49, 49, 0.25);
-      }
-
-      @supports ((-webkit-background-clip: text) or (background-clip: text)) {
-        .hero-title {
-          background: linear-gradient(135deg, #fff7c9 0%, var(--button-cta) 28%, var(--pink) 58%, #c98ed3 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
+          0 1px 0 rgba(95, 45, 103, 0.65),
+          0 8px 18px rgba(49, 49, 49, 0.22);
       }
 
       .hero-frame img {
@@ -322,11 +280,11 @@
         }
 
         .hero-title {
-          font-size: clamp(2rem, 9vw, 3.8rem);
+          font-size: clamp(2rem, 8vw, 3.45rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(1.1rem, 4.8vw, 1.45rem);
+          font-size: clamp(1rem, 4vw, 1.25rem);
         }
 
         .scroll-section {
@@ -355,25 +313,17 @@
         }
 
         .hero-title {
-          font-size: clamp(1.95rem, 5vw, 3.45rem);
+          font-size: clamp(1.95rem, 4.7vw, 3.15rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(1rem, 2vw, 1.25rem);
+          font-size: clamp(0.95rem, 1.8vw, 1.1rem);
         }
       }
 
       @media (max-width: 380px) {
         .hero-title {
-          font-size: clamp(1.45rem, 9.5vw, 2rem);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .hero-title,
-        .hero-subtitle {
-          animation: none;
-          transform: none;
+          font-size: clamp(1.5rem, 9vw, 1.95rem);
         }
       }
 
@@ -382,8 +332,6 @@
         .hero-subtitle {
           color: CanvasText;
           text-shadow: none;
-          background: none;
-          -webkit-text-fill-color: currentColor;
         }
       }
     </style>
