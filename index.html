@@ -130,23 +130,35 @@
         padding: 140px 40px 56px;
       }
 
+      .hero-copy {
+        display: inline-flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: min(820px, 100%);
+        padding: 18px 22px 20px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, rgba(49, 49, 49, 0.5), rgba(95, 45, 103, 0.28));
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        backdrop-filter: blur(6px);
+      }
+
       .hero-title,
       .hero-subtitle {
         margin: 0;
-        max-width: min(760px, 100%);
+        max-width: 100%;
       }
 
       .hero-title {
         font-family: "Segoe UI", "Trebuchet MS", "Verdana", sans-serif;
-        font-size: clamp(2.5rem, 6vw, 4.85rem);
+        font-size: clamp(2.9rem, 7vw, 5.5rem);
         font-weight: 700;
         line-height: 1.02;
         letter-spacing: -0.01em;
-        color: var(--vanilla);
+        color: #fff9f2;
         text-shadow:
-          0 2px 0 rgba(95, 45, 103, 0.85),
-          0 10px 24px rgba(49, 49, 49, 0.24),
-          0 18px 36px rgba(49, 49, 49, 0.18);
+          0 2px 0 rgba(72, 34, 79, 0.95),
+          0 12px 30px rgba(0, 0, 0, 0.34),
+          0 20px 42px rgba(0, 0, 0, 0.24);
       }
 
       .hero-title-group {
@@ -155,15 +167,15 @@
 
       .hero-subtitle {
         font-family: "Segoe UI", "Trebuchet MS", sans-serif;
-        font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+        font-size: clamp(1.3rem, 2.9vw, 1.95rem);
         line-height: 1.3;
         max-width: 34ch;
         font-weight: 700;
         letter-spacing: 0.02em;
-        color: var(--button-cta);
+        color: #ffe2a0;
         text-shadow:
-          0 1px 0 rgba(95, 45, 103, 0.65),
-          0 8px 18px rgba(49, 49, 49, 0.22);
+          0 1px 0 rgba(72, 34, 79, 0.88),
+          0 8px 22px rgba(0, 0, 0, 0.28);
       }
 
       .hero-frame img {
@@ -278,12 +290,17 @@
           padding: 124px 20px 44px;
         }
 
+        .hero-copy {
+          padding: 16px 18px 18px;
+          border-radius: 24px;
+        }
+
         .hero-title {
-          font-size: clamp(2rem, 8vw, 3.45rem);
+          font-size: clamp(2.25rem, 9vw, 4rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(1rem, 4vw, 1.25rem);
+          font-size: clamp(1.1rem, 4.8vw, 1.45rem);
         }
 
         .scroll-section {
@@ -312,17 +329,27 @@
         }
 
         .hero-title {
-          font-size: clamp(1.95rem, 4.7vw, 3.15rem);
+          font-size: clamp(2.1rem, 5.1vw, 3.75rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+          font-size: clamp(1rem, 2.1vw, 1.28rem);
         }
       }
 
       @media (max-width: 380px) {
+        .hero-copy {
+          padding: 14px 14px 16px;
+        }
+
         .hero-title {
-          font-size: clamp(1.5rem, 9vw, 1.95rem);
+          font-size: clamp(1.55rem, 8.6vw, 2rem);
+        }
+      }
+
+      @supports not ((backdrop-filter: blur(6px))) {
+        .hero-copy {
+          background: linear-gradient(135deg, rgba(49, 49, 49, 0.72), rgba(95, 45, 103, 0.48));
         }
       }
 
@@ -354,8 +381,10 @@
             <img src="./F0C1AF65-93DD-4ABD-9872-C30A4376236D.png" alt="Freshly groomed dog" />
           </div>
           <div class="hero-content">
-            <h1 class="hero-title" id="hero-title"><span class="hero-title-group">Refined Grooming.</span> Real Results.</h1>
-            <p class="hero-subtitle">The Standard Your Dog's Been Missing</p>
+            <div class="hero-copy">
+              <h1 class="hero-title" id="hero-title"><span class="hero-title-group">Refined Grooming.</span> Real Results.</h1>
+              <p class="hero-subtitle">The Standard Your Dog's Been Missing</p>
+            </div>
           </div>
         </section>
 
