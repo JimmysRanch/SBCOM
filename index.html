@@ -176,12 +176,8 @@
         line-height: 1.04;
         letter-spacing: 0.01em;
         color: var(--button-cta);
-        background: linear-gradient(135deg, #fff7c9 0%, var(--button-cta) 28%, var(--pink) 58%, #c98ed3 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
         animation: hero-title-float 6s ease-in-out infinite;
-        will-change: transform, text-shadow;
+        will-change: transform;
         text-shadow:
           0 3px 0 rgba(95, 45, 103, 0.95),
           0 10px 20px rgba(49, 49, 49, 0.28),
@@ -199,10 +195,19 @@
         font-weight: 600;
         color: #ffeaf6;
         animation: hero-subtitle-glow 5s ease-in-out infinite;
-        will-change: transform, text-shadow;
+        will-change: transform;
         text-shadow:
           0 2px 0 rgba(95, 45, 103, 0.72),
           0 8px 22px rgba(49, 49, 49, 0.25);
+      }
+
+      @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+        .hero-title {
+          background: linear-gradient(135deg, #fff7c9 0%, var(--button-cta) 28%, var(--pink) 58%, #c98ed3 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
       }
 
       .hero-frame img {
@@ -370,6 +375,16 @@
         .hero-subtitle {
           animation: none;
           transform: none;
+        }
+      }
+
+      @media (forced-colors: active) {
+        .hero-title,
+        .hero-subtitle {
+          color: CanvasText;
+          text-shadow: none;
+          background: none;
+          -webkit-text-fill-color: currentColor;
         }
       }
     </style>
