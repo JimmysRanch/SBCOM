@@ -29,6 +29,40 @@
         }
       }
 
+      @keyframes hero-title-float {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+          text-shadow:
+            0 3px 0 rgba(95, 45, 103, 0.95),
+            0 10px 20px rgba(49, 49, 49, 0.28),
+            0 18px 40px rgba(49, 49, 49, 0.24);
+        }
+        50% {
+          transform: translate3d(0, -6px, 0) scale(1.01);
+          text-shadow:
+            0 5px 0 rgba(95, 45, 103, 0.95),
+            0 14px 28px rgba(49, 49, 49, 0.34),
+            0 22px 44px rgba(49, 49, 49, 0.28);
+        }
+      }
+
+      @keyframes hero-subtitle-glow {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0);
+          text-shadow:
+            0 2px 0 rgba(95, 45, 103, 0.72),
+            0 8px 22px rgba(49, 49, 49, 0.25);
+        }
+        50% {
+          transform: translate3d(0, -3px, 0);
+          text-shadow:
+            0 3px 0 rgba(95, 45, 103, 0.8),
+            0 12px 26px rgba(49, 49, 49, 0.3);
+        }
+      }
+
       body {
         margin: 0;
         font-family: "Trebuchet MS", "Segoe UI", sans-serif;
@@ -133,15 +167,25 @@
       .hero-title,
       .hero-subtitle {
         margin: 0;
-        max-width: min(560px, 100%);
-        text-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+        max-width: min(760px, 100%);
       }
 
       .hero-title {
-        font-size: clamp(2.15rem, 5vw, 4rem);
-        font-weight: 600;
-        line-height: 1.08;
-        letter-spacing: 0;
+        font-size: clamp(2.6rem, 6.6vw, 5.35rem);
+        font-weight: 700;
+        line-height: 1.04;
+        letter-spacing: 0.01em;
+        color: var(--button-cta);
+        background: linear-gradient(135deg, #fff7c9 0%, var(--button-cta) 28%, var(--pink) 58%, #c98ed3 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: hero-title-float 6s ease-in-out infinite;
+        will-change: transform, text-shadow;
+        text-shadow:
+          0 3px 0 rgba(95, 45, 103, 0.95),
+          0 10px 20px rgba(49, 49, 49, 0.28),
+          0 18px 40px rgba(49, 49, 49, 0.24);
       }
 
       .hero-title-group {
@@ -149,9 +193,16 @@
       }
 
       .hero-subtitle {
-        font-size: clamp(1rem, 2vw, 1.35rem);
-        line-height: 1.4;
-        max-width: 30ch;
+        font-size: clamp(1.2rem, 2.6vw, 1.75rem);
+        line-height: 1.32;
+        max-width: 34ch;
+        font-weight: 600;
+        color: #ffeaf6;
+        animation: hero-subtitle-glow 5s ease-in-out infinite;
+        will-change: transform, text-shadow;
+        text-shadow:
+          0 2px 0 rgba(95, 45, 103, 0.72),
+          0 8px 22px rgba(49, 49, 49, 0.25);
       }
 
       .hero-frame img {
@@ -267,11 +318,11 @@
         }
 
         .hero-title {
-          font-size: clamp(1.75rem, 7.2vw, 2.9rem);
+          font-size: clamp(2rem, 9vw, 3.8rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(1rem, 4.4vw, 1.2rem);
+          font-size: clamp(1.1rem, 4.8vw, 1.45rem);
         }
 
         .scroll-section {
@@ -300,17 +351,25 @@
         }
 
         .hero-title {
-          font-size: clamp(1.75rem, 4vw, 3rem);
+          font-size: clamp(1.95rem, 5vw, 3.45rem);
         }
 
         .hero-subtitle {
-          font-size: clamp(0.95rem, 1.8vw, 1.1rem);
+          font-size: clamp(1rem, 2vw, 1.25rem);
         }
       }
 
       @media (max-width: 380px) {
         .hero-title {
-          font-size: clamp(1.5rem, 9vw, 2rem);
+          font-size: clamp(1.45rem, 9.5vw, 2rem);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-title,
+        .hero-subtitle {
+          animation: none;
+          transform: none;
         }
       }
     </style>
