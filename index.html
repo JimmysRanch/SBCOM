@@ -13,6 +13,7 @@
         --button-bg: rgba(255, 255, 255, 0.92);
         --button-text: #5f2d67;
         --button-cta: #f7c45b;
+        --menu-panel-bg: rgba(49, 49, 49, 0.68);
         --scroll-duration: 28s;
       }
 
@@ -487,7 +488,7 @@
 
         .nav {
           position: absolute;
-          top: calc(100% - 4px);
+          top: 100%;
           right: 16px;
           flex-direction: column;
           align-items: stretch;
@@ -495,7 +496,7 @@
           width: min(260px, calc(100vw - 32px));
           padding: 16px;
           border-radius: 24px;
-          background: rgba(255, 255, 255, 0.22);
+          background: var(--menu-panel-bg);
           backdrop-filter: blur(16px);
           box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
           opacity: 0;
@@ -606,9 +607,9 @@
           aria-expanded="false"
           aria-controls="primaryNav"
         >
-          <span class="menu-toggle-bar"></span>
-          <span class="menu-toggle-bar"></span>
-          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar" aria-hidden="true"></span>
+          <span class="menu-toggle-bar" aria-hidden="true"></span>
+          <span class="menu-toggle-bar" aria-hidden="true"></span>
         </button>
         <nav class="nav" id="primaryNav" aria-label="Primary">
           <button type="button">About Us</button>
@@ -748,7 +749,8 @@
       }
 
       if (menuToggle && primaryNav) {
-        menuToggle.addEventListener("click", () => {
+        menuToggle.addEventListener("click", (event) => {
+          event.stopPropagation();
           setMenuState(!primaryNav.classList.contains("is-open"));
         });
 
@@ -765,7 +767,7 @@
             return;
           }
 
-          if (menuToggle.contains(event.target) || primaryNav.contains(event.target)) {
+          if (primaryNav.contains(event.target)) {
             return;
           }
 
@@ -778,8 +780,8 @@
           }
         });
 
-        mobileMenu.addEventListener("change", (event) => {
-          if (!event.matches) {
+        mobileMenu.addEventListener("change", () => {
+          if (!mobileMenu.matches) {
             closeMenu();
           }
         });
