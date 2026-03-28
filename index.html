@@ -83,6 +83,57 @@
         gap: 14px;
       }
 
+      .menu-toggle {
+        display: none;
+        position: relative;
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: var(--button-bg);
+        color: var(--button-text);
+        cursor: pointer;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+      }
+
+      .menu-toggle-bar {
+        position: absolute;
+        left: 50%;
+        width: 22px;
+        height: 2px;
+        border-radius: 999px;
+        background: currentColor;
+        transform: translateX(-50%);
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .menu-toggle-bar:nth-child(1) {
+        top: 18px;
+      }
+
+      .menu-toggle-bar:nth-child(2) {
+        top: 25px;
+      }
+
+      .menu-toggle-bar:nth-child(3) {
+        top: 32px;
+      }
+
+      .menu-toggle.is-open .menu-toggle-bar:nth-child(1) {
+        transform: translateX(-50%) translateY(7px) rotate(45deg);
+      }
+
+      .menu-toggle.is-open .menu-toggle-bar:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.is-open .menu-toggle-bar:nth-child(3) {
+        transform: translateX(-50%) translateY(-7px) rotate(-45deg);
+      }
+
       .nav button {
         display: inline-flex;
         align-items: center;
@@ -426,12 +477,46 @@
           width: min(210px, 52vw);
         }
 
+        .menu-toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-left: auto;
+        }
+
         .nav {
-          max-width: calc(100% - 32px);
+          position: absolute;
+          top: calc(100% - 4px);
+          right: 16px;
+          flex-direction: column;
+          align-items: stretch;
           gap: 10px;
+          width: min(260px, calc(100vw - 32px));
+          padding: 16px;
+          border-radius: 24px;
+          background: rgba(255, 255, 255, 0.22);
+          backdrop-filter: blur(16px);
+          box-shadow: 0 18px 36px rgba(0, 0, 0, 0.22);
+          opacity: 0;
+          visibility: hidden;
+          pointer-events: none;
+          transform: translateY(-10px);
+          transition:
+            opacity 0.2s ease,
+            transform 0.2s ease,
+            visibility 0.2s ease;
+        }
+
+        .nav.is-open {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+          transform: translateY(0);
         }
 
         .nav button {
+          width: 100%;
           padding: 12px 18px;
           font-size: 0.95rem;
         }
@@ -463,8 +548,8 @@
         }
 
         .scrolling-slider-img {
-          width: 70px;
-          height: 70px;
+          width: 140px;
+          height: 140px;
           border-radius: 9px;
         }
 
@@ -513,7 +598,19 @@
         <a class="brand" href="#" aria-label="Scruffy Butts home">
           <img src="./IMG_5769.png" alt="Scruffy Butts logo" />
         </a>
-        <nav class="nav" aria-label="Primary">
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          type="button"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="primaryNav"
+        >
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+          <span class="menu-toggle-bar"></span>
+        </button>
+        <nav class="nav" id="primaryNav" aria-label="Primary">
           <button type="button">About Us</button>
           <button type="button">Contact</button>
           <button type="button">Book Appointment</button>
@@ -625,6 +722,9 @@
     </div>
 
     <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const primaryNav = document.getElementById("primaryNav");
+      const mobileMenu = window.matchMedia("(max-width: 900px)");
       const container = document.getElementById("comparison");
       const beforeImage = container.querySelector(".image-before");
       const sliderLine = document.getElementById("sliderLine");
@@ -632,6 +732,58 @@
 
       let isDragging = false;
       let currentPosition = 50;
+
+      function setMenuState(isOpen) {
+        if (!menuToggle || !primaryNav) {
+          return;
+        }
+
+        menuToggle.classList.toggle("is-open", isOpen);
+        primaryNav.classList.toggle("is-open", isOpen);
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      }
+
+      function closeMenu() {
+        setMenuState(false);
+      }
+
+      if (menuToggle && primaryNav) {
+        menuToggle.addEventListener("click", () => {
+          setMenuState(!primaryNav.classList.contains("is-open"));
+        });
+
+        primaryNav.querySelectorAll("button").forEach((navButton) => {
+          navButton.addEventListener("click", () => {
+            if (mobileMenu.matches) {
+              closeMenu();
+            }
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (!mobileMenu.matches) {
+            return;
+          }
+
+          if (menuToggle.contains(event.target) || primaryNav.contains(event.target)) {
+            return;
+          }
+
+          closeMenu();
+        });
+
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+
+        mobileMenu.addEventListener("change", (event) => {
+          if (!event.matches) {
+            closeMenu();
+          }
+        });
+      }
 
       function updateSlider(position) {
         position = Math.max(0, Math.min(100, position));
