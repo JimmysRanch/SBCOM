@@ -440,6 +440,66 @@
         transition: left 0.1s ease-out;
       }
 
+      #background-wrap {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .bubble {
+        position: absolute;
+        left: 0;
+        top: 0;
+        border-radius: 50%;
+        opacity: 0;
+        will-change: transform, opacity, filter;
+        box-sizing: border-box;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.55) 16%,
+          rgba(255, 255, 255, 0.18) 42%,
+          rgba(255, 255, 255, 0.06) 68%,
+          rgba(255, 255, 255, 0.01) 100%
+        );
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow:
+          0 8px 18px rgba(0, 0, 0, 0.12),
+          0 0 0 1px rgba(255, 255, 255, 0.12),
+          inset 0 8px 16px rgba(255, 255, 255, 0.85),
+          inset 0 -10px 14px rgba(255, 255, 255, 0.08),
+          inset -8px -8px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .bubble::before {
+        content: "";
+        position: absolute;
+        top: 14%;
+        left: 16%;
+        width: 28%;
+        height: 28%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.98) 0%,
+          rgba(255, 255, 255, 0.45) 45%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+
+      .bubble::after {
+        content: "";
+        position: absolute;
+        inset: 6%;
+        border-radius: 50%;
+        border-top: 1px solid rgba(255, 255, 255, 0.35);
+        border-left: 1px solid rgba(255, 255, 255, 0.18);
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+      }
+
       .container-fluid {
         padding: 0;
       }
@@ -721,6 +781,7 @@
     </style>
   </head>
   <body>
+    <div id="background-wrap" aria-hidden="true"></div>
     <div class="page">
       <header class="topbar">
         <a class="brand" href="#" aria-label="Scruffy Butts home">
@@ -871,6 +932,8 @@
       const beforeImage = container.querySelector(".image-before");
       const sliderLine = document.getElementById("sliderLine");
       const sliderKnob = document.getElementById("sliderKnob");
+      const wrap = document.getElementById("background-wrap");
+      const bubbles = new Set();
 
       let isDragging = false;
       let currentPosition = 50;
@@ -1059,6 +1122,183 @@
       });
 
       updateSlider(50);
+
+      function rand(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function chance(percent) {
+        return Math.random() < percent;
+      }
+
+      function clamp(value, min, max) {
+        return Math.max(min, Math.min(max, value));
+      }
+
+      function createBubble(customX = null, customY = null, isTrail = false) {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
+
+        const size = isTrail ? rand(8, 28) : rand(24, 155);
+        const startXPercent = customX !== null ? customX : rand(-5, 105);
+        const startX = (startXPercent / 100) * window.innerWidth;
+        const startY = customY !== null ? customY : window.innerHeight + size + rand(10, 140);
+
+        const life = isTrail ? rand(5000, 11000) : rand(14000, 32000);
+        const opacity = isTrail ? rand(0.14, 0.26) : rand(0.3, 0.72);
+
+        const swayAmount = isTrail ? rand(8, 24) : rand(20, 140);
+        const swaySpeed = rand(0.7, 2.8);
+        const wobbleAmount = isTrail ? rand(3, 10) : rand(8, 42);
+        const driftBias = rand(-0.42, 0.42);
+        const rotationSpeed = rand(-40, 40);
+
+        const dip = !isTrail && chance(0.18);
+        const dipStart = rand(0.18, 0.6);
+        const dipLength = rand(0.05, 0.14);
+        const dipAmount = rand(8, 40);
+
+        const stall = !isTrail && chance(0.24);
+        const stallStart = rand(0.25, 0.72);
+        const stallLength = rand(0.04, 0.12);
+
+        const blur = isTrail ? rand(0, 1.2) : rand(0, 2);
+
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
+        bubble.style.opacity = "0";
+        bubble.style.filter = `blur(${blur}px)`;
+
+        wrap.appendChild(bubble);
+
+        const data = {
+          el: bubble,
+          startTime: performance.now(),
+          life,
+          size,
+          startX,
+          startY,
+          opacity,
+          swayAmount,
+          swaySpeed,
+          wobbleAmount,
+          driftBias,
+          rotationSpeed,
+          dip,
+          dipStart,
+          dipLength,
+          dipAmount,
+          stall,
+          stallStart,
+          stallLength,
+          isTrail,
+          dead: false,
+        };
+
+        bubbles.add(data);
+
+        if (!isTrail && size > 95 && chance(0.35)) {
+          const trailCount = Math.floor(rand(2, 5));
+          for (let i = 0; i < trailCount; i += 1) {
+            setTimeout(() => {
+              createBubble(startXPercent + rand(-2.5, 2.5), startY + rand(10, 45), true);
+            }, rand(250, 1400));
+          }
+        }
+      }
+
+      function updateBubble(bubble, now) {
+        const elapsed = now - bubble.startTime;
+        const t = elapsed / bubble.life;
+
+        if (t >= 1) {
+          bubble.el.remove();
+          bubble.dead = true;
+          return;
+        }
+
+        let progress = t;
+
+        if (bubble.stall && t > bubble.stallStart && t < bubble.stallStart + bubble.stallLength) {
+          const local = (t - bubble.stallStart) / bubble.stallLength;
+          progress -= 0.045 * Math.sin(local * Math.PI);
+        }
+
+        const riseDistance = window.innerHeight + bubble.size * 3.2;
+        let y = bubble.startY - progress * riseDistance;
+
+        if (bubble.dip && t > bubble.dipStart && t < bubble.dipStart + bubble.dipLength) {
+          const local = (t - bubble.dipStart) / bubble.dipLength;
+          y += Math.sin(local * Math.PI) * bubble.dipAmount;
+        }
+
+        const wave1 = Math.sin(t * Math.PI * 2 * bubble.swaySpeed + bubble.startX * 0.002) * bubble.swayAmount;
+        const wave2 =
+          Math.sin(t * Math.PI * 2 * (bubble.swaySpeed * 0.41) + bubble.size * 0.08) * (bubble.swayAmount * 0.45);
+        const wave3 = Math.cos(t * Math.PI * 2 * (bubble.swaySpeed * 1.67) + bubble.startX * 0.005) * bubble.wobbleAmount;
+        const wave4 = Math.sin(t * Math.PI * 2 * (bubble.swaySpeed * 0.19) + bubble.size) * (bubble.swayAmount * 0.18);
+
+        let x =
+          bubble.startX +
+          wave1 +
+          wave2 +
+          wave3 +
+          wave4 +
+          (t - 0.5) * window.innerWidth * bubble.driftBias;
+
+        const edgePush = 40;
+        if (x < -edgePush) x = -edgePush;
+        if (x > window.innerWidth + edgePush) x = window.innerWidth + edgePush;
+
+        let opacity = bubble.opacity;
+        const fadeInPortion = bubble.isTrail ? 0.1 : 0.08;
+        const fadeOutPortion = bubble.isTrail ? 0.86 : 0.94;
+
+        if (t < fadeInPortion) {
+          opacity = bubble.opacity * (t / fadeInPortion);
+        } else if (t > fadeOutPortion) {
+          opacity = bubble.opacity * ((1 - t) / (1 - fadeOutPortion));
+        }
+
+        const scaleBreath = 1 + Math.sin(t * Math.PI * 2 * (bubble.swaySpeed * 0.8)) * 0.03;
+        const rotate = Math.sin(t * Math.PI * 2 * 1.35 + bubble.startX * 0.01) * (bubble.rotationSpeed * 0.14);
+
+        bubble.el.style.opacity = clamp(opacity, 0, 1).toFixed(3);
+        bubble.el.style.transform = `translate(${x}px, ${y}px) scale(${scaleBreath}) rotate(${rotate}deg)`;
+      }
+
+      function animateBubbles(now) {
+        for (const bubble of bubbles) {
+          updateBubble(bubble, now);
+          if (bubble.dead) bubbles.delete(bubble);
+        }
+        window.requestAnimationFrame(animateBubbles);
+      }
+
+      function burst(count = 7) {
+        for (let i = 0; i < count; i += 1) {
+          setTimeout(() => createBubble(), rand(0, 2200));
+        }
+      }
+
+      function randomSpawner() {
+        createBubble();
+
+        if (chance(0.08)) {
+          setTimeout(() => createBubble(), rand(70, 240));
+        }
+
+        if (chance(0.04)) {
+          setTimeout(() => createBubble(), rand(160, 480));
+        }
+
+        const next = rand(600, 2400);
+        setTimeout(randomSpawner, next);
+      }
+
+      burst(7);
+      randomSpawner();
+      window.requestAnimationFrame(animateBubbles);
     </script>
   </body>
 </html>
