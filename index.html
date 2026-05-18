@@ -758,7 +758,7 @@
           </div>
         </section>
 
-        <section class="gallery-section" style="display:none">
+        <section class="gallery-section">
           <div class="container-fluid">
             <div class="scroll-section">
               <div class="multicolor-wave-top"></div>
@@ -817,7 +817,7 @@
           </div>
         </section>
 
-        <section class="comparison-section" aria-labelledby="comparison-title" style="display:none">
+        <section class="comparison-section" aria-labelledby="comparison-title">
           <div class="comparison-shell">
             <h2 class="comparison-heading" id="comparison-title">Scruffy Butts Glow Up</h2>
             <div class="comparison-container" id="comparison">
@@ -868,12 +868,10 @@
       const primaryNav = document.getElementById("primaryNav");
       const mobileMenu = window.matchMedia("(max-width: 900px)");
       const container = document.getElementById("comparison");
-      const beforeImage = container.querySelector(".image-before");
+      const beforeImage = container ? container.querySelector(".image-before") : null;
       const sliderLine = document.getElementById("sliderLine");
       const sliderKnob = document.getElementById("sliderKnob");
-
-      let isDragging = false;
-      let currentPosition = 50;
+      const hasComparisonSlider = Boolean(container && beforeImage && sliderLine && sliderKnob);
 
       function setMenuState(isOpen) {
         if (!menuToggle || !primaryNav) {
@@ -927,6 +925,10 @@
           }
         });
       }
+
+      if (hasComparisonSlider) {
+        let isDragging = false;
+        let currentPosition = 50;
 
       function updateSlider(position) {
         position = Math.max(0, Math.min(100, position));
@@ -1059,6 +1061,7 @@
       });
 
       updateSlider(50);
+      }
     </script>
   </body>
 </html>
