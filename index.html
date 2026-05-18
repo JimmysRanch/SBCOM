@@ -764,52 +764,58 @@
               <div class="multicolor-wave-top"></div>
               <div class="scrolling-images-wrap" aria-hidden="true">
                 <div class="scrolling-image">
-                  <img src="./IMG_5006.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6366.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5007.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6367.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5008.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6368.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5345.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6369.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5346.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6370.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5744.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6371.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5933.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6372.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image">
-                  <img src="./IMG_5935.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6373.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image">
+                  <img src="./images/IMG_6374.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5006.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6366.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5007.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6367.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5008.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6368.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5345.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6369.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5346.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6370.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5744.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6371.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5933.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6372.png" class="scrolling-slider-img" alt="" />
                 </div>
                 <div class="scrolling-image" aria-hidden="true">
-                  <img src="./IMG_5935.png" class="scrolling-slider-img" alt="" />
+                  <img src="./images/IMG_6373.png" class="scrolling-slider-img" alt="" />
+                </div>
+                <div class="scrolling-image" aria-hidden="true">
+                  <img src="./images/IMG_6374.png" class="scrolling-slider-img" alt="" />
                 </div>
               </div>
               <div class="multicolor-wave-bottom"></div>
@@ -930,137 +936,137 @@
         let isDragging = false;
         let currentPosition = 50;
 
-      function updateSlider(position) {
-        position = Math.max(0, Math.min(100, position));
-        currentPosition = position;
+        function updateSlider(position) {
+          position = Math.max(0, Math.min(100, position));
+          currentPosition = position;
 
-        beforeImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
-        sliderLine.style.left = `${position}%`;
-        sliderKnob.style.left = `${position}%`;
-        sliderKnob.setAttribute("aria-valuenow", Math.round(currentPosition));
-        sliderKnob.setAttribute(
-          "aria-valuetext",
-          `Slider at ${Math.round(currentPosition)}%, showing ${Math.round(currentPosition)}% before and ${Math.round(
-            100 - currentPosition,
-          )}% after`,
-        );
-      }
-
-      function handleMove(clientX) {
-        const rect = container.getBoundingClientRect();
-        const x = clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        updateSlider(percentage);
-      }
-
-      sliderKnob.addEventListener("mousedown", (event) => {
-        isDragging = true;
-        container.classList.add("dragging");
-        event.preventDefault();
-      });
-
-      container.addEventListener("mousedown", (event) => {
-        if (sliderKnob.contains(event.target)) {
-          return;
+          beforeImage.style.clipPath = `inset(0 ${100 - position}% 0 0)`;
+          sliderLine.style.left = `${position}%`;
+          sliderKnob.style.left = `${position}%`;
+          sliderKnob.setAttribute("aria-valuenow", Math.round(currentPosition));
+          sliderKnob.setAttribute(
+            "aria-valuetext",
+            `Slider at ${Math.round(currentPosition)}%, showing ${Math.round(currentPosition)}% before and ${Math.round(
+              100 - currentPosition,
+            )}% after`,
+          );
         }
 
-        isDragging = true;
-        container.classList.add("dragging");
-        handleMove(event.clientX);
-      });
-
-      document.addEventListener("mousemove", (event) => {
-        if (!isDragging) {
-          return;
+        function handleMove(clientX) {
+          const rect = container.getBoundingClientRect();
+          const x = clientX - rect.left;
+          const percentage = (x / rect.width) * 100;
+          updateSlider(percentage);
         }
 
-        handleMove(event.clientX);
-      });
-
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-        container.classList.remove("dragging");
-      });
-
-      sliderKnob.addEventListener(
-        "touchstart",
-        (event) => {
+        sliderKnob.addEventListener("mousedown", (event) => {
           isDragging = true;
           container.classList.add("dragging");
-        },
-        { passive: false },
-      );
+          event.preventDefault();
+        });
 
-      container.addEventListener(
-        "touchstart",
-        (event) => {
+        container.addEventListener("mousedown", (event) => {
           if (sliderKnob.contains(event.target)) {
             return;
           }
 
-          if (!event.touches || event.touches.length === 0) {
-            return;
-          }
-
           isDragging = true;
           container.classList.add("dragging");
-          handleMove(event.touches[0].clientX);
-        },
-        { passive: false },
-      );
+          handleMove(event.clientX);
+        });
 
-      document.addEventListener(
-        "touchmove",
-        (event) => {
+        document.addEventListener("mousemove", (event) => {
           if (!isDragging) {
             return;
           }
 
-          if (!event.touches || event.touches.length === 0) {
-            return;
+          handleMove(event.clientX);
+        });
+
+        document.addEventListener("mouseup", () => {
+          isDragging = false;
+          container.classList.remove("dragging");
+        });
+
+        sliderKnob.addEventListener(
+          "touchstart",
+          () => {
+            isDragging = true;
+            container.classList.add("dragging");
+          },
+          { passive: false },
+        );
+
+        container.addEventListener(
+          "touchstart",
+          (event) => {
+            if (sliderKnob.contains(event.target)) {
+              return;
+            }
+
+            if (!event.touches || event.touches.length === 0) {
+              return;
+            }
+
+            isDragging = true;
+            container.classList.add("dragging");
+            handleMove(event.touches[0].clientX);
+          },
+          { passive: false },
+        );
+
+        document.addEventListener(
+          "touchmove",
+          (event) => {
+            if (!isDragging) {
+              return;
+            }
+
+            if (!event.touches || event.touches.length === 0) {
+              return;
+            }
+
+            event.preventDefault();
+            handleMove(event.touches[0].clientX);
+          },
+          { passive: false },
+        );
+
+        document.addEventListener("touchend", () => {
+          isDragging = false;
+          container.classList.remove("dragging");
+        });
+
+        sliderKnob.addEventListener("keydown", (event) => {
+          let newPosition = currentPosition;
+
+          switch (event.key) {
+            case "ArrowLeft":
+            case "ArrowDown":
+              newPosition -= 5;
+              event.preventDefault();
+              break;
+            case "ArrowRight":
+            case "ArrowUp":
+              newPosition += 5;
+              event.preventDefault();
+              break;
+            case "Home":
+              newPosition = 0;
+              event.preventDefault();
+              break;
+            case "End":
+              newPosition = 100;
+              event.preventDefault();
+              break;
+            default:
+              return;
           }
 
-          event.preventDefault();
-          handleMove(event.touches[0].clientX);
-        },
-        { passive: false },
-      );
+          updateSlider(newPosition);
+        });
 
-      document.addEventListener("touchend", () => {
-        isDragging = false;
-        container.classList.remove("dragging");
-      });
-
-      sliderKnob.addEventListener("keydown", (event) => {
-        let newPosition = currentPosition;
-
-        switch (event.key) {
-          case "ArrowLeft":
-          case "ArrowDown":
-            newPosition -= 5;
-            event.preventDefault();
-            break;
-          case "ArrowRight":
-          case "ArrowUp":
-            newPosition += 5;
-            event.preventDefault();
-            break;
-          case "Home":
-            newPosition = 0;
-            event.preventDefault();
-            break;
-          case "End":
-            newPosition = 100;
-            event.preventDefault();
-            break;
-          default:
-            return;
-        }
-
-        updateSlider(newPosition);
-      });
-
-      updateSlider(50);
+        updateSlider(50);
       }
     </script>
   </body>
