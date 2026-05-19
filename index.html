@@ -245,6 +245,187 @@
         padding: 0 0 72px;
       }
 
+
+
+      .about-section {
+        position: relative;
+        padding: clamp(54px, 7vw, 90px) 24px clamp(64px, 8vw, 108px);
+        background: radial-gradient(circle at 20% 0%, #ffffff 0%, #fff 35%, #f8fbff 100%);
+        color: #17316b;
+        overflow: hidden;
+      }
+
+      .about-section::before,
+      .about-section::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+      }
+
+      .about-section::before {
+        width: clamp(200px, 25vw, 360px);
+        height: clamp(200px, 25vw, 360px);
+        background: radial-gradient(circle, rgba(235, 64, 154, 0.22), rgba(235, 64, 154, 0));
+        bottom: -140px;
+        left: -40px;
+      }
+
+      .about-section::after {
+        width: clamp(220px, 26vw, 420px);
+        height: clamp(220px, 26vw, 420px);
+        background: radial-gradient(circle, rgba(14, 76, 196, 0.2), rgba(14, 76, 196, 0));
+        top: -170px;
+        right: -90px;
+      }
+
+      .about-shell {
+        position: relative;
+        z-index: 1;
+        max-width: 1320px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: minmax(340px, 1.08fr) minmax(360px, 1fr);
+        gap: clamp(24px, 4vw, 48px);
+        align-items: center;
+      }
+
+      .about-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 20px;
+        border: 2px solid #f04ba6;
+        border-radius: 999px;
+        background: #fff;
+        font-size: 0.96rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #eb3f9a;
+      }
+
+      .about-title {
+        margin: 16px 0 16px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(2.25rem, 4.7vw, 4.55rem);
+        line-height: 1.02;
+        letter-spacing: -0.01em;
+        color: #0b46bb;
+      }
+
+      .about-title .pink {
+        color: #ef3f9f;
+      }
+
+      .about-divider {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 24px;
+        color: #f05aaa;
+      }
+
+      .about-divider::before,
+      .about-divider::after {
+        content: "";
+        height: 2px;
+        width: 120px;
+        max-width: 20vw;
+        background: linear-gradient(90deg, rgba(240, 90, 170, 0), rgba(240, 90, 170, 0.82));
+      }
+
+      .about-divider::after {
+        background: linear-gradient(90deg, rgba(240, 90, 170, 0.82), rgba(240, 90, 170, 0));
+      }
+
+      .about-copy p {
+        margin: 0 0 16px;
+        max-width: 58ch;
+        font-size: clamp(1.05rem, 1.45vw, 2rem);
+        line-height: 1.52;
+        color: #213b73;
+      }
+
+      .about-highlight {
+        margin: 20px 0 24px;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(180deg, #ff4eac 0%, #eb2d91 100%);
+        color: #fff;
+        border-radius: 999px;
+        padding: 13px 22px;
+        font-size: clamp(1rem, 1.3vw, 1.2rem);
+        font-weight: 800;
+        box-shadow:
+          0 8px 0 rgba(20, 43, 99, 0.12),
+          0 16px 30px rgba(235, 45, 145, 0.27);
+      }
+
+      .about-image-frame {
+        position: relative;
+      }
+
+      .about-image-wrap {
+        position: relative;
+        border: 9px solid #fff;
+        border-radius: 42px;
+        overflow: hidden;
+        box-shadow:
+          0 20px 42px rgba(5, 28, 72, 0.23),
+          0 0 0 1px rgba(11, 70, 187, 0.08);
+      }
+
+      .about-image-wrap img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .about-badge {
+        position: absolute;
+        right: -18px;
+        bottom: -24px;
+        padding: 16px 18px;
+        border-radius: 999px;
+        border: 6px solid #fff;
+        background: #0b46bb;
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 800;
+        letter-spacing: 0.03em;
+        box-shadow: 0 16px 30px rgba(5, 28, 72, 0.25);
+      }
+
+      .about-points {
+        position: relative;
+        z-index: 1;
+        max-width: 1320px;
+        margin: 30px auto 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .about-point {
+        display: grid;
+        gap: 8px;
+        padding: 16px 14px 0;
+        border-top: 2px solid #e8edff;
+      }
+
+      .about-point strong {
+        display: block;
+        margin-bottom: 2px;
+        color: #0f2d75;
+        font-size: 1.38rem;
+      }
+
+      .about-point span {
+        color: #334f87;
+      }
+
       .comparison-section {
         padding: 0 24px 96px;
       }
@@ -633,6 +814,38 @@
           border-radius: 9px;
         }
 
+        .about-section {
+          padding: 30px 16px 58px;
+        }
+
+        .about-shell {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image-wrap {
+          border-radius: 24px;
+          border-width: 6px;
+        }
+
+        .about-highlight {
+          border-radius: 16px;
+          display: flex;
+        }
+
+        .about-points {
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .about-badge {
+          position: static;
+          display: inline-flex;
+          margin-top: 12px;
+          padding: 10px 14px;
+          border-width: 4px;
+          font-size: 0.82rem;
+        }
+
         .comparison-section {
           padding: 0 16px 72px;
         }
@@ -739,7 +952,7 @@
           <span class="menu-toggle-bar" aria-hidden="true"></span>
         </button>
         <nav class="nav" id="primaryNav" aria-label="Primary">
-          <button type="button">About Us</button>
+          <button type="button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About Us</button>
           <button type="button">Contact</button>
           <button type="button">Book Appointment</button>
         </nav>
@@ -850,6 +1063,35 @@
               </div>
               <div class="multicolor-wave-bottom"></div>
             </div>
+          </div>
+        </section>
+
+
+
+        <section class="about-section" id="about" aria-labelledby="about-title">
+          <div class="about-shell">
+            <div class="about-copy">
+              <div class="about-kicker"><span aria-hidden="true">🐾</span>Our Salon</div>
+              <h2 class="about-title" id="about-title">Right Down the Street,<br />Ready to <span class="pink">Love Your Pup</span></h2>
+              <div class="about-divider" aria-hidden="true">♡</div>
+              <p>At Scruffy Butts, located right here in Natalia, Texas, we're here for dirty paws, fluffy faces, and first-time pups who need patient care.</p>
+              <p>We specialize in one-on-one grooming for dogs who need extra love and owners who want someone they can trust.</p>
+              <div class="about-highlight"><span aria-hidden="true">🐾</span>Big dogs, little dogs, nervous dogs, wild dogs—we welcome them all.</div>
+              <p>We're not a factory-line groomer. Every pup gets patience, attention, and a calm experience from start to finish.</p>
+              <p>Our focus is stress-free grooming with results that help your dog look and feel their best.</p>
+            </div>
+            <div class="about-image-frame">
+              <div class="about-image-wrap">
+                <img src="./images/IMG_6406.png" alt="Scruffy Butts blue salon with pink door" />
+              </div>
+              <div class="about-badge">LOCAL • LOVING • NATALIA, TX</div>
+            </div>
+          </div>
+          <div class="about-points" aria-label="Scruffy Butts values">
+            <div class="about-point"><strong>♡ One-on-One Care</strong><span>Every pup gets our full attention.</span></div>
+            <div class="about-point"><strong>🐾 Patient &amp; Kind</strong><span>We groom with calm and kindness.</span></div>
+            <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
+            <div class="about-point"><strong>✂ Groomed to Shine</strong><span>Healthy, happy pups look their best.</span></div>
           </div>
         </section>
 
