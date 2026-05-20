@@ -466,6 +466,113 @@
         color: #334f87;
       }
 
+
+
+      .contact-section {
+        position: relative;
+        padding: 0 24px 96px;
+      }
+
+      .contact-card {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: clamp(22px, 3.4vw, 44px);
+        border-radius: 36px;
+        background: linear-gradient(165deg, #fffefe 0%, #fff7fb 64%, #fff3f9 100%);
+        box-shadow: 0 30px 70px rgba(26, 22, 44, 0.24);
+        color: #11235f;
+      }
+
+      .contact-main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: clamp(20px, 2.8vw, 42px);
+        align-items: center;
+      }
+
+      .contact-copy {
+        display: grid;
+        gap: 18px;
+        align-content: start;
+        justify-items: center;
+      }
+
+      .contact-message-art {
+        width: min(100%, 720px);
+      }
+
+      .contact-text {
+        margin: 0 auto;
+        max-width: 34ch;
+        font-size: clamp(1.14rem, 1.75vw, 1.72rem);
+        line-height: 1.45;
+        color: #182f67;
+        text-align: center;
+      }
+
+      .contact-text strong {
+        color: #ef3a97;
+      }
+
+      .contact-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 8px;
+        padding: 14px 24px;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #ff4fa8 0%, #ea2189 100%);
+        color: #fff;
+        text-decoration: none;
+        font-size: clamp(1.3rem, 2.6vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        box-shadow: 0 16px 28px rgba(233, 35, 136, 0.38);
+        justify-content: center;
+        text-align: center;
+      }
+
+      .contact-cta::before {
+        content: "💬";
+        font-size: 1.12em;
+      }
+
+      .contact-visual {
+        position: relative;
+      }
+
+      .contact-dog {
+        position: relative;
+        z-index: 1;
+        width: min(100%, 560px);
+        margin-inline: auto;
+        border-radius: 26px;
+      }
+
+
+      .contact-pillars {
+        margin-top: clamp(18px, 2.2vw, 34px);
+        padding: 14px;
+        border-radius: 26px;
+        background: #fff;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .contact-pillar {
+        text-align: center;
+        padding: 14px 10px;
+        color: #1a2f66;
+        font-weight: 700;
+        font-size: clamp(0.74rem, 1.1vw, 1.08rem);
+        letter-spacing: 0.02em;
+      }
+
+      .contact-pillar + .contact-pillar {
+        border-left: 1px solid #e4e7f5;
+      }
+
       .comparison-section {
         padding: 0 24px 96px;
       }
@@ -907,6 +1014,45 @@
           padding: 0 16px 72px;
         }
 
+        .contact-section {
+          padding: 0 16px 72px;
+        }
+
+        .contact-card {
+          border-radius: 26px;
+          padding: 20px 16px;
+        }
+
+        .contact-main {
+          grid-template-columns: 1fr;
+        }
+
+
+        .contact-cta {
+          font-size: 1.45rem;
+          width: 100%;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .contact-pillars {
+          grid-template-columns: 1fr 1fr;
+          gap: 0;
+        }
+
+        .contact-pillar {
+          padding: 12px 8px;
+        }
+
+        .contact-pillar:nth-child(odd) {
+          border-left: 0;
+        }
+
+        .contact-pillar:nth-child(3),
+        .contact-pillar:nth-child(4) {
+          border-top: 1px solid #e4e7f5;
+        }
+
         .comparison-copy {
           margin-bottom: 24px;
           font-size: 0.95rem;
@@ -1016,7 +1162,7 @@
         </button>
         <nav class="nav" id="primaryNav" aria-label="Primary">
           <button type="button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About Us</button>
-          <button type="button">Contact</button>
+          <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact</button>
           <button type="button">Book Appointment</button>
         </nav>
       </header>
@@ -1155,6 +1301,28 @@
             <div class="about-point"><strong>🐾 Patient &amp; Kind</strong><span>We groom with calm and kindness.</span></div>
             <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
             <div class="about-point"><strong>✂ Groomed to Shine</strong><span>Healthy, happy pups look their best.</span></div>
+          </div>
+        </section>
+
+
+        <section class="contact-section" id="contact" aria-label="Contact Scruffy Butts">
+          <div class="contact-card">
+            <div class="contact-main">
+              <div class="contact-copy">
+                <img class="contact-message-art" src="./images/contact/IMG_6436.png" alt="Skip the call, just text us" />
+                <p class="contact-text">Text us for questions, appointments, or grooming updates. <strong>We'll get back to you quickly!</strong></p>
+                <a class="contact-cta" href="sms:+12103870447">Text 210-387-0447</a>
+              </div>
+              <div class="contact-visual" aria-hidden="true">
+                <img class="contact-dog" src="./images/contact/IMG_6423.png" alt="" />
+              </div>
+            </div>
+            <div class="contact-pillars" aria-label="Why text Scruffy Butts">
+              <div class="contact-pillar">FAST REPLIES</div>
+              <div class="contact-pillar">EASY BOOKING</div>
+              <div class="contact-pillar">PUP APPROVED</div>
+              <div class="contact-pillar">GROOMING EXPERTS</div>
+            </div>
           </div>
         </section>
 
