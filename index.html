@@ -466,6 +466,32 @@
         color: #334f87;
       }
 
+      .contact-section {
+        padding: clamp(36px, 5vw, 72px) 20px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      }
+
+      .contact-shell {
+        max-width: 1320px;
+        margin: 0 auto;
+      }
+
+      .contact-image {
+        width: 100%;
+        border-radius: clamp(26px, 2.8vw, 36px);
+        overflow: hidden;
+        box-shadow: 0 20px 42px rgba(19, 49, 107, 0.14);
+      }
+
+      .contact-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .contact-mobile {
+        display: none;
+      }
+
       .comparison-section {
         padding: 0 24px 96px;
       }
@@ -907,6 +933,18 @@
           padding: 0 16px 72px;
         }
 
+        .contact-section {
+          padding: 24px 10px 36px;
+        }
+
+        .contact-mobile {
+          display: block;
+        }
+
+        .contact-desktop {
+          display: none;
+        }
+
         .comparison-copy {
           margin-bottom: 24px;
           font-size: 0.95rem;
@@ -1016,7 +1054,7 @@
         </button>
         <nav class="nav" id="primaryNav" aria-label="Primary">
           <button type="button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About Us</button>
-          <button type="button">Contact</button>
+          <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact</button>
           <button type="button">Book Appointment</button>
         </nav>
       </header>
@@ -1155,6 +1193,17 @@
             <div class="about-point"><strong>🐾 Patient &amp; Kind</strong><span>We groom with calm and kindness.</span></div>
             <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
             <div class="about-point"><strong>✂ Groomed to Shine</strong><span>Healthy, happy pups look their best.</span></div>
+          </div>
+        </section>
+
+        <section class="contact-section" id="contact" aria-label="Contact Scruffy Butts">
+          <div class="contact-shell">
+            <figure class="contact-image contact-desktop">
+              <img src="./images/IMG_6424.png" alt="Contact Scruffy Butts by text message on desktop layout" />
+            </figure>
+            <figure class="contact-image contact-mobile">
+              <img src="./images/IMG_6423.png" alt="Contact Scruffy Butts by text message on mobile layout" />
+            </figure>
           </div>
         </section>
 
