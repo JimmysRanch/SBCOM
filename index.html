@@ -481,6 +481,19 @@
         padding: clamp(20px, 3vw, 38px);
       }
 
+      .contact-reference-desktop {
+        display: block;
+        width: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 42px rgba(19, 49, 107, 0.14);
+      }
+
+      .contact-reference-desktop img {
+        width: 100%;
+        height: auto;
+      }
+
       .contact-main {
         display: grid;
         grid-template-columns: 1.05fr 0.95fr;
@@ -568,6 +581,13 @@
 
       .contact-point:last-child {
         border-right: 0;
+      }
+
+      @media (min-width: 901px) {
+        .contact-main,
+        .contact-points {
+          display: none;
+        }
       }
 
       .comparison-section {
@@ -1021,8 +1041,17 @@
         }
 
         .contact-main {
+          display: grid;
           grid-template-columns: 1fr;
           gap: 6px;
+        }
+
+        .contact-points {
+          display: grid;
+        }
+
+        .contact-reference-desktop {
+          display: none;
         }
 
         .contact-title {
@@ -1330,6 +1359,9 @@
 
         <section class="contact-section" id="contact" aria-label="Contact Scruffy Butts">
           <div class="contact-shell">
+            <figure class="contact-reference-desktop" aria-hidden="true">
+              <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" alt="" />
+            </figure>
             <div class="contact-main">
               <div class="contact-copy">
                 <h2 class="contact-title">Skip the Call —<br /><span class="pink">Just Text Us</span></h2>
