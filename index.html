@@ -64,7 +64,7 @@
       }
 
       .brand {
-        display: inline-flex;
+        display: flex;
         align-items: flex-start;
         flex-shrink: 0;
       }
@@ -296,7 +296,7 @@
       .about-copy {
         grid-area: copy;
         position: relative;
-        padding: clamp(22px, 2.2vw, 30px) clamp(20px, 2.4vw, 34px);
+        padding: clamp(16px, 2vw, 24px) clamp(20px, 2.4vw, 34px);
         border-radius: 30px;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94));
         box-shadow:
@@ -329,7 +329,8 @@
       }
 
       .about-title {
-        margin: 16px 0 16px;
+        margin: 4px 0 16px;
+        text-align: center;
         font-family: Georgia, "Times New Roman", serif;
         font-size: clamp(2.25rem, 4.7vw, 4.55rem);
         line-height: 1.02;
@@ -343,6 +344,7 @@
 
       .about-divider {
         display: flex;
+        justify-content: center;
         align-items: center;
         gap: 14px;
         margin: 0 0 24px;
@@ -371,7 +373,7 @@
       }
 
       .about-highlight {
-        margin: 20px 0 24px;
+        margin: 20px auto 24px;
         display: inline-flex;
         align-items: center;
         gap: 10px;
