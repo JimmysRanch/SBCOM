@@ -64,7 +64,7 @@
       }
 
       .brand {
-        display: inline-flex;
+        display: flex;
         align-items: flex-start;
         flex-shrink: 0;
       }
@@ -286,13 +286,17 @@
         margin: 0 auto;
         display: grid;
         grid-template-columns: minmax(340px, 1.08fr) minmax(360px, 1fr);
-        gap: clamp(24px, 4vw, 48px);
-        align-items: center;
+        grid-template-areas:
+          "copy image"
+          "copy points";
+        gap: clamp(20px, 3vw, 32px) clamp(24px, 4vw, 48px);
+        align-items: stretch;
       }
 
       .about-copy {
+        grid-area: copy;
         position: relative;
-        padding: clamp(22px, 2.2vw, 30px) clamp(20px, 2.4vw, 34px);
+        padding: clamp(10px, 1.5vw, 18px) clamp(20px, 2.4vw, 34px);
         border-radius: 30px;
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94));
         box-shadow:
@@ -325,7 +329,8 @@
       }
 
       .about-title {
-        margin: 16px 0 16px;
+        margin: 0 0 12px;
+        text-align: center;
         font-family: Georgia, "Times New Roman", serif;
         font-size: clamp(2.25rem, 4.7vw, 4.55rem);
         line-height: 1.02;
@@ -339,9 +344,10 @@
 
       .about-divider {
         display: flex;
+        justify-content: center;
         align-items: center;
         gap: 14px;
-        margin: 0 0 24px;
+        margin: 0 0 18px;
         color: #f05aaa;
       }
 
@@ -367,7 +373,7 @@
       }
 
       .about-highlight {
-        margin: 20px 0 24px;
+        margin: 12px auto 18px;
         display: inline-flex;
         align-items: center;
         gap: 10px;
@@ -383,6 +389,7 @@
       }
 
       .about-image-frame {
+        grid-area: image;
         position: relative;
         padding-bottom: 24px;
       }
@@ -434,12 +441,13 @@
       }
 
       .about-points {
+        grid-area: points;
         position: relative;
         z-index: 1;
-        max-width: 1320px;
-        margin: 30px auto 0;
+        margin: 0;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-self: end;
         gap: 20px;
       }
 
@@ -967,6 +975,10 @@
 
         .about-shell {
           grid-template-columns: 1fr;
+          grid-template-areas:
+            "copy"
+            "image"
+            "points";
         }
 
         .about-copy {
@@ -1282,8 +1294,7 @@
             <div class="about-copy">
               <h2 class="about-title" id="about-title">Right Down the<br />Street, Ready to<br /><span class="pink">Love Your Pup</span></h2>
               <div class="about-divider" aria-hidden="true">♡</div>
-              <p>At Scruffy Butts, located right here in Natalia, Texas, we're here for dirty paws, fluffy faces, and first-time pups who need patient care.</p>
-              <p>We specialize in one-on-one grooming for dogs who need extra love and owners who want someone they can trust.</p>
+              <p>At Scruffy Butts, located right here in Natalia, Texas, we're here for dirty paws, fluffy faces, and first-time pups who need patient care, specializing in one-on-one grooming for dogs who need extra love and owners who want someone they can trust.</p>
               <div class="about-highlight"><span aria-hidden="true">🐾</span>Big dogs, little dogs, nervous dogs, new timers and old timers—we welcome them all.</div>
               <p>We're not a factory-line groomer. Every pup gets patience, attention, and a calm experience from start to finish.</p>
               <p>Our focus is stress-free grooming with results that help your dog look and feel their best.</p>
@@ -1295,12 +1306,10 @@
               <div class="about-heart" aria-hidden="true">💗</div>
               <div class="about-badge">LOCAL • LOVING • NATALIA, TX</div>
             </div>
-          </div>
-          <div class="about-points" aria-label="Scruffy Butts values">
-            <div class="about-point"><strong>♡ One-on-One Care</strong><span>Every pup gets our full attention.</span></div>
-            <div class="about-point"><strong>🐾 Patient &amp; Kind</strong><span>We groom with calm and kindness.</span></div>
-            <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
-            <div class="about-point"><strong>✂ Groomed to Shine</strong><span>Healthy, happy pups look their best.</span></div>
+            <div class="about-points" aria-label="Scruffy Butts values">
+              <div class="about-point"><strong>♡ One-on-One Care</strong><span>Every pup gets our full attention.</span></div>
+              <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
+            </div>
           </div>
         </section>
 
