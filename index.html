@@ -500,6 +500,18 @@
         width: min(100%, 720px);
       }
 
+      .contact-text {
+        margin: 0;
+        max-width: 34ch;
+        font-size: clamp(1.02rem, 1.45vw, 1.5rem);
+        line-height: 1.45;
+        color: #182f67;
+      }
+
+      .contact-text strong {
+        color: #ef3a97;
+      }
+
       .contact-cta {
         display: inline-flex;
         align-items: center;
@@ -510,10 +522,12 @@
         background: linear-gradient(180deg, #ff4fa8 0%, #ea2189 100%);
         color: #fff;
         text-decoration: none;
-        font-size: clamp(1.15rem, 2vw, 2.1rem);
+        font-size: clamp(1.3rem, 2.6vw, 2.6rem);
         font-weight: 800;
         letter-spacing: 0.02em;
         box-shadow: 0 16px 28px rgba(233, 35, 136, 0.38);
+        justify-content: center;
+        text-align: center;
       }
 
       .contact-cta::before {
@@ -523,14 +537,6 @@
 
       .contact-visual {
         position: relative;
-      }
-
-      .contact-blob {
-        position: absolute;
-        inset: 8% 6% 4%;
-        border-radius: 52% 48% 44% 56% / 55% 45% 55% 45%;
-        background: radial-gradient(circle at 35% 32%, #ffd7ea 0%, #ffc6e2 55%, #ffbadc 100%);
-        z-index: 0;
       }
 
       .contact-dog {
@@ -1021,9 +1027,10 @@
 
 
         .contact-cta {
-          font-size: 1.2rem;
+          font-size: 1.45rem;
           width: 100%;
           justify-content: center;
+          text-align: center;
         }
 
         .contact-pillars {
@@ -1301,10 +1308,10 @@
             <div class="contact-main">
               <div class="contact-copy">
                 <img class="contact-message-art" src="./images/contact/IMG_6436.png" alt="Skip the call, just text us" />
+                <p class="contact-text">Text us for questions, appointments, or grooming updates. <strong>We'll get back to you quickly!</strong></p>
                 <a class="contact-cta" href="sms:+12103870447">Text 210-387-0447</a>
               </div>
               <div class="contact-visual" aria-hidden="true">
-                <div class="contact-blob"></div>
                 <img class="contact-dog" src="./images/contact/IMG_6423.png" alt="" />
               </div>
             </div>
