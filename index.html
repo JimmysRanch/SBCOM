@@ -490,37 +490,14 @@
         align-items: center;
       }
 
-      .contact-logo {
-        width: clamp(180px, 22vw, 260px);
-        margin-bottom: 16px;
+      .contact-copy {
+        display: grid;
+        gap: 18px;
+        align-content: start;
       }
 
-      .contact-title {
-        margin: 0;
-        text-transform: uppercase;
-        line-height: 0.92;
-        letter-spacing: 0.02em;
-        font-size: clamp(2rem, 6.2vw, 6rem);
-      }
-
-      .contact-title .dark {
-        color: #10245f;
-      }
-
-      .contact-title .pink {
-        color: #ef3a97;
-      }
-
-      .contact-text {
-        margin: 20px 0 14px;
-        max-width: 30ch;
-        font-size: clamp(1rem, 1.6vw, 1.95rem);
-        line-height: 1.45;
-        color: #182f67;
-      }
-
-      .contact-text strong {
-        color: #ef3a97;
+      .contact-message-art {
+        width: min(100%, 720px);
       }
 
       .contact-cta {
@@ -556,21 +533,14 @@
         z-index: 0;
       }
 
-      .contact-note {
-        position: absolute;
-        top: 3%;
-        right: 2%;
-        width: clamp(120px, 22vw, 240px);
-        z-index: 2;
-      }
-
-      .contact-pup {
+      .contact-dog {
         position: relative;
         z-index: 1;
         width: min(100%, 560px);
         margin-inline: auto;
         border-radius: 26px;
       }
+
 
       .contact-pillars {
         margin-top: clamp(18px, 2.2vw, 34px);
@@ -1049,13 +1019,6 @@
           grid-template-columns: 1fr;
         }
 
-        .contact-title {
-          max-width: 11ch;
-        }
-
-        .contact-text {
-          max-width: 34ch;
-        }
 
         .contact-cta {
           font-size: 1.2rem;
@@ -1333,19 +1296,16 @@
         </section>
 
 
-        <section class="contact-section" id="contact" aria-labelledby="contact-title">
+        <section class="contact-section" id="contact" aria-label="Contact Scruffy Butts">
           <div class="contact-card">
             <div class="contact-main">
               <div class="contact-copy">
-                <img class="contact-logo" src="./IMG_5769.png" alt="Scruffy Butts logo" />
-                <h2 class="contact-title" id="contact-title"><span class="dark">Skip the call —</span><br /><span class="pink">Just text us</span></h2>
-                <p class="contact-text">Text us for questions, appointments, or grooming updates. <strong>We get back to you quickly!</strong></p>
+                <img class="contact-message-art" src="./images/contact/IMG_6436.png" alt="Skip the call, just text us" />
                 <a class="contact-cta" href="sms:+12103870447">Text 210-387-0447</a>
               </div>
               <div class="contact-visual" aria-hidden="true">
                 <div class="contact-blob"></div>
-                <img class="contact-note" src="./images/contact/IMG_6423.png" alt="" />
-                <img class="contact-pup" src="./images/contact/IMG_6436.png" alt="" />
+                <img class="contact-dog" src="./images/contact/IMG_6423.png" alt="" />
               </div>
             </div>
             <div class="contact-pillars" aria-label="Why text Scruffy Butts">
