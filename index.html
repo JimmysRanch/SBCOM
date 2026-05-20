@@ -466,6 +466,123 @@
         color: #334f87;
       }
 
+      .contact-section {
+        padding: clamp(36px, 5vw, 72px) 20px;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        color: #062a72;
+      }
+
+      .contact-shell {
+        max-width: 1320px;
+        margin: 0 auto;
+        border-radius: 28px;
+        background: #fff;
+        box-shadow: 0 18px 36px rgba(19, 49, 107, 0.12);
+        padding: clamp(20px, 3vw, 38px);
+      }
+
+      .contact-reference-desktop {
+        display: block;
+        width: 100%;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 42px rgba(19, 49, 107, 0.14);
+      }
+
+      .contact-reference-desktop img {
+        width: 100%;
+        height: auto;
+      }
+
+      .contact-main {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(16px, 3vw, 34px);
+        align-items: end;
+      }
+
+      .contact-title {
+        margin: 0 0 14px;
+        font-size: clamp(2.1rem, 6.6vw, 5.7rem);
+        line-height: 0.96;
+        font-weight: 900;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+      }
+
+      .contact-title .pink {
+        color: #ef3d97;
+      }
+
+      .contact-copy p {
+        margin: 0;
+        font-size: clamp(1.1rem, 2vw, 1.6rem);
+        line-height: 1.4;
+      }
+
+      .contact-copy strong {
+        color: #ef3d97;
+      }
+
+      .contact-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 22px;
+        border-radius: 18px;
+        padding: 14px 26px;
+        background: linear-gradient(180deg, #ff4ca6 0%, #eb328e 100%);
+        color: #fff;
+        text-decoration: none;
+        font-size: clamp(1.5rem, 3.4vw, 3.05rem);
+        font-weight: 800;
+        box-shadow: 0 10px 22px rgba(235, 50, 142, 0.32);
+      }
+
+      .contact-figure {
+        position: relative;
+        margin: 0;
+      }
+
+      .contact-pink-bg {
+        position: absolute;
+        right: 0;
+        bottom: 2%;
+        width: 92%;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        background: #ffd1e8;
+      }
+
+      .contact-dog {
+        position: relative;
+        z-index: 1;
+        width: min(560px, 100%);
+        margin-left: auto;
+        border-radius: 20px;
+      }
+
+      .contact-points {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-radius: 20px;
+        background: #fff;
+        box-shadow: inset 0 0 0 1px #edf2ff;
+      }
+
+      .contact-point {
+        padding: 14px 12px;
+        text-align: center;
+        font-weight: 800;
+        color: #072769;
+        border-right: 1px solid #d8e2f5;
+      }
+
+      .contact-point:last-child {
+        border-right: 0;
+      }
+
       .comparison-section {
         padding: 0 24px 96px;
       }
@@ -907,6 +1024,71 @@
           padding: 0 16px 72px;
         }
 
+        .contact-section {
+          padding: 20px 10px 34px;
+        }
+
+        .contact-shell {
+          border-radius: 22px;
+          padding: 16px 12px;
+        }
+
+        .contact-reference-desktop {
+          border-radius: 18px;
+        }
+
+        .contact-title {
+          font-size: clamp(2.35rem, 12.4vw, 3.95rem);
+        }
+
+        .contact-copy {
+          text-align: center;
+        }
+
+        .contact-copy p {
+          font-size: clamp(1rem, 5.8vw, 1.45rem);
+        }
+
+        .contact-cta {
+          width: 100%;
+          justify-content: center;
+          font-size: clamp(1.3rem, 7vw, 2.15rem);
+          border-radius: 16px;
+        }
+
+        .contact-figure {
+          margin-top: 4px;
+        }
+
+        .contact-dog {
+          width: min(420px, 86%);
+          margin: 0 auto;
+        }
+
+        .contact-pink-bg {
+          left: 50%;
+          right: auto;
+          transform: translateX(-50%);
+          width: min(420px, 92%);
+        }
+
+        .contact-points {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .contact-point {
+          border-right: 1px solid #d8e2f5;
+          border-bottom: 1px solid #d8e2f5;
+        }
+
+        .contact-point:nth-child(2n) {
+          border-right: 0;
+        }
+
+        .contact-point:nth-last-child(-n + 2) {
+          border-bottom: 0;
+        }
+
         .comparison-copy {
           margin-bottom: 24px;
           font-size: 0.95rem;
@@ -1016,7 +1198,7 @@
         </button>
         <nav class="nav" id="primaryNav" aria-label="Primary">
           <button type="button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About Us</button>
-          <button type="button">Contact</button>
+          <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact</button>
           <button type="button">Book Appointment</button>
         </nav>
       </header>
@@ -1155,6 +1337,14 @@
             <div class="about-point"><strong>🐾 Patient &amp; Kind</strong><span>We groom with calm and kindness.</span></div>
             <div class="about-point"><strong>☆ Small-Town Heart</strong><span>Local, friendly, and community proud.</span></div>
             <div class="about-point"><strong>✂ Groomed to Shine</strong><span>Healthy, happy pups look their best.</span></div>
+          </div>
+        </section>
+
+        <section class="contact-section" id="contact" aria-label="Contact Scruffy Butts">
+          <div class="contact-shell">
+            <figure class="contact-reference-desktop">
+              <img src="./ED2439E1-3724-488C-A24A-03576958CFCE.png" alt="Skip the call just text us contact section design" />
+            </figure>
           </div>
         </section>
 
