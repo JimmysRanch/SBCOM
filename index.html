@@ -247,7 +247,8 @@
 
 
 
-      .about-section {
+      .about-section,
+      .contact-section {
         position: relative;
         padding: clamp(54px, 7vw, 90px) 24px clamp(64px, 8vw, 108px);
         background: radial-gradient(circle at 20% 0%, #ffffff 0%, #fff 35%, #f8fbff 100%);
@@ -256,7 +257,9 @@
       }
 
       .about-section::before,
-      .about-section::after {
+      .about-section::after,
+      .contact-section::before,
+      .contact-section::after {
         content: "";
         position: absolute;
         border-radius: 999px;
@@ -267,8 +270,8 @@
         width: clamp(200px, 25vw, 360px);
         height: clamp(200px, 25vw, 360px);
         background: radial-gradient(circle, rgba(235, 64, 154, 0.22), rgba(235, 64, 154, 0));
-        bottom: -140px;
-        left: -40px;
+        bottom: clamp(18px, 3vw, 42px);
+        left: clamp(10px, 2.4vw, 34px);
       }
 
       .about-section::after {
@@ -277,6 +280,26 @@
         background: radial-gradient(circle, rgba(14, 76, 196, 0.2), rgba(14, 76, 196, 0));
         top: -170px;
         right: -90px;
+      }
+
+      .contact-section {
+        padding: 0 24px 96px;
+      }
+
+      .contact-section::before {
+        width: clamp(190px, 23vw, 330px);
+        height: clamp(190px, 23vw, 330px);
+        background: radial-gradient(circle, rgba(235, 64, 154, 0.2), rgba(235, 64, 154, 0));
+        bottom: clamp(12px, 2vw, 34px);
+        right: clamp(8px, 2vw, 30px);
+      }
+
+      .contact-section::after {
+        width: clamp(220px, 25vw, 380px);
+        height: clamp(220px, 25vw, 380px);
+        background: radial-gradient(circle, rgba(14, 76, 196, 0.18), rgba(14, 76, 196, 0));
+        top: clamp(20px, 3.4vw, 56px);
+        left: clamp(8px, 2vw, 30px);
       }
 
       .about-shell {
@@ -476,19 +499,42 @@
 
 
 
-      .contact-section {
+      .contact-card {
+        width: 100%;
         position: relative;
-        padding: 0 24px 96px;
+        z-index: 1;
+        padding: clamp(22px, 3.4vw, 44px);
+        border-radius: 30px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 251, 255, 0.94));
+        box-shadow:
+          0 22px 45px rgba(15, 39, 101, 0.14),
+          inset 0 0 0 1px rgba(16, 76, 195, 0.08);
+        color: #11235f;
+        overflow: hidden;
       }
 
-      .contact-card {
-        max-width: 1300px;
-        margin: 0 auto;
-        padding: clamp(22px, 3.4vw, 44px);
-        border-radius: 36px;
-        background: linear-gradient(165deg, #fffefe 0%, #fff7fb 64%, #fff3f9 100%);
-        box-shadow: 0 30px 70px rgba(26, 22, 44, 0.24);
-        color: #11235f;
+      .contact-card::before,
+      .contact-card::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+      }
+
+      .contact-card::before {
+        width: clamp(150px, 18vw, 250px);
+        height: clamp(150px, 18vw, 250px);
+        background: radial-gradient(circle, rgba(238, 63, 159, 0.15), rgba(238, 63, 159, 0));
+        top: clamp(14px, 2vw, 32px);
+        right: clamp(10px, 1.8vw, 24px);
+      }
+
+      .contact-card::after {
+        width: clamp(170px, 20vw, 280px);
+        height: clamp(170px, 20vw, 280px);
+        background: radial-gradient(circle, rgba(16, 76, 195, 0.12), rgba(16, 76, 195, 0));
+        bottom: clamp(8px, 1.5vw, 24px);
+        left: clamp(8px, 1.6vw, 24px);
       }
 
       .contact-main {
@@ -973,6 +1019,10 @@
           padding: 30px 16px 58px;
         }
 
+        .contact-section {
+          padding: 0 16px 72px;
+        }
+
         .about-shell {
           grid-template-columns: 1fr;
           grid-template-areas:
@@ -1023,10 +1073,6 @@
         }
 
         .comparison-section {
-          padding: 0 16px 72px;
-        }
-
-        .contact-section {
           padding: 0 16px 72px;
         }
 
