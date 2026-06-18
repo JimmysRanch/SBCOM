@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scruffy Butts</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CR6QM91SE1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CR6QM91SE1");
+    </script>
     <style>
       :root {
         --vanilla: #fff;
@@ -1221,7 +1232,7 @@
 <nav class="nav" id="primaryNav" aria-label="Primary">
   <button type="button" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'});">About Us</button>
   <button type="button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Contact</button>
-  <button type="button" onclick="window.location.href='https://126-eta.vercel.app/book/b2f7dd90-b17b-4f7d-a655-3de67d1964d8';">Book Appointment</button>
+  <button type="button" onclick="trackBookAppointmentClick();">Book Appointment</button>
 </nav>
       </header>
 
@@ -1428,6 +1439,33 @@
     </div>
 
     <script>
+      const bookingUrl = "https://126-eta.vercel.app/book/b2f7dd90-b17b-4f7d-a655-3de67d1964d8";
+
+      function trackBookAppointmentClick() {
+        let hasRedirected = false;
+
+        function redirectToBooking() {
+          if (hasRedirected) {
+            return;
+          }
+
+          hasRedirected = true;
+          window.location.href = bookingUrl;
+        }
+
+        if (typeof gtag !== "function") {
+          redirectToBooking();
+          return;
+        }
+
+        window.setTimeout(redirectToBooking, 800);
+
+        gtag("event", "book_now_click", {
+          transport_type: "beacon",
+          event_callback: redirectToBooking,
+        });
+      }
+
       const menuToggle = document.getElementById("menuToggle");
       const primaryNav = document.getElementById("primaryNav");
       const mobileMenu = window.matchMedia("(max-width: 900px)");
