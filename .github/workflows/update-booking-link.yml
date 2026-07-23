@@ -1,12 +1,8 @@
 name: Update booking link
 
-# One-time trigger for the Scruffy Butts booking URL update.
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/update-booking-link.yml
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
