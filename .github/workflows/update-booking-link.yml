@@ -1,5 +1,6 @@
 name: Update booking link
 
+# One-time trigger for the Scruffy Butts booking URL update.
 on:
   push:
     branches:
