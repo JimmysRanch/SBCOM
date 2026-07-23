@@ -3,7 +3,7 @@ name: Update booking link
 on:
   push:
     branches:
-      - agent/update-booking-link
+      - main
     paths:
       - .github/workflows/update-booking-link.yml
 
@@ -42,4 +42,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html .github/workflows/update-booking-link.yml
           git commit -m "Update Scruffy Butts booking link"
-          git push origin HEAD:agent/update-booking-link
+          git push origin HEAD:main
