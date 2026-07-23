@@ -1,15 +1,16 @@
 name: Update book appointment link
 
 on:
-  push:
+  pull_request:
     branches:
-      - agent/update-book-appointment-link
+      - main
 
 permissions:
   contents: write
 
 jobs:
   update-link:
+    if: github.event.pull_request.head.ref == 'agent/update-book-appointment-link'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
