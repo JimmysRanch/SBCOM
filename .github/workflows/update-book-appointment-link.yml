@@ -1,0 +1,36 @@
+name: Update book appointment link
+
+on:
+  push:
+    branches:
+      - agent/update-book-appointment-link
+
+permissions:
+  contents: write
+
+jobs:
+  update-link:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/update-book-appointment-link
+          fetch-depth: 0
+      - name: Replace booking URL
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('index.html')
+          old = 'https://126-eta.vercel.app/book/b2f7dd90-b17b-4f7d-a655-3de67d1964d8'
+          new = 'https://app.zoomiegroomie.com/book/scruffy-butts'
+          content = path.read_text()
+          if content.count(old) != 1:
+              raise SystemExit(f'Expected exactly one old booking URL, found {content.count(old)}')
+          path.write_text(content.replace(old, new))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git rm .github/workflows/update-book-appointment-link.yml
+          git commit -m "Update book appointment link"
+          git push origin HEAD:agent/update-book-appointment-link
